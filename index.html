@@ -6,215 +6,198 @@
     <title>Egy Dent - مستلزمات طب الأسنان</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ===== نفس التنسيقات اللي قبل كده ===== */
+        /* ===== RESET ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary: #1a1a1a; --gold: #D4AF37; --silver: #C0C0C0; --white: #FFFFFF; --light-gray: #f5f5f5; --shadow: 0 4px 15px rgba(0,0,0,0.1); --transition: all 0.3s ease; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--white); color: var(--primary); line-height: 1.6; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--white); color: var(--primary); line-height: 1.6; overflow-x: hidden; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .navbar { background: var(--primary); padding: 15px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes shimmer { 0% { background-position: -200% center; } 100% { background-position: 200% center; } }
+        @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+        @keyframes glow { 0% { text-shadow: 0 0 10px rgba(212,175,55,0.3); } 50% { text-shadow: 0 0 30px rgba(212,175,55,0.6); } 100% { text-shadow: 0 0 10px rgba(212,175,55,0.3); } }
+        @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes typewriter { from { width: 0; } to { width: 100%; } }
+        @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: var(--gold); } }
+
+        .animate-fade { animation: fadeInUp 0.8s ease forwards; }
+        .animate-slide { animation: slideInRight 0.8s ease forwards; }
+        .animate-bounce { animation: bounceIn 0.8s ease forwards; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-glow { animation: glow 2s ease-in-out infinite; }
+
+        /* ===== NAVBAR ===== */
+        .navbar { background: var(--primary); padding: 12px 0; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.5); border-bottom: 2px solid var(--gold); }
         .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 20px; display: flex; justify-content: space-between; align-items: center; }
-        .nav-logo { display: flex; align-items: center; gap: 10px; }
-        .logo-img { height: 40px; width: auto; }
-        .logo-text { color: var(--gold); font-size: 1.5rem; font-weight: bold; }
+        .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+        .nav-logo .logo-img { height: 45px; width: auto; border-radius: 8px; transition: var(--transition); }
+        .nav-logo .logo-img:hover { transform: scale(1.05) rotate(-3deg); }
+        .logo-text { color: var(--gold); font-size: 1.6rem; font-weight: bold; letter-spacing: 1px; background: linear-gradient(135deg, var(--gold), #f5d76e, var(--gold)); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 3s linear infinite; }
+        .logo-sub { color: var(--silver); font-size: 0.7rem; -webkit-text-fill-color: var(--silver); display: block; letter-spacing: 2px; }
         .nav-links { display: flex; align-items: center; gap: 25px; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; gap: 8px; cursor: pointer; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 0.95rem; transition: var(--transition); display: flex; align-items: center; gap: 6px; position: relative; padding: 5px 0; }
+        .nav-links a::after { content: ''; position: absolute; bottom: 0; right: 0; width: 0; height: 2px; background: var(--gold); transition: var(--transition); }
+        .nav-links a:hover::after, .nav-links a.active::after { width: 100%; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
         .cart-link { position: relative; }
-        .cart-badge { background: var(--gold); color: var(--primary); border-radius: 50%; padding: 2px 8px; font-size: 0.7rem; font-weight: bold; position: absolute; top: -8px; right: -8px; }
+        .cart-badge { background: var(--gold); color: var(--primary); border-radius: 50%; padding: 2px 8px; font-size: 0.65rem; font-weight: bold; position: absolute; top: -8px; right: -8px; animation: pulse 2s infinite; }
         .nav-toggle { display: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
-        .hero { background: linear-gradient(135deg, var(--primary) 0%, #2a2a2a 100%); padding: 120px 0 80px; text-align: center; color: var(--white); }
-        .hero-logo { max-height: 100px; margin-bottom: 20px; }
-        .hero h1 { font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
-        .hero p { font-size: 1.2rem; color: var(--silver); margin-bottom: 30px; }
+
+        /* ===== HERO ===== */
+        .hero { background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 30%, #16213e 60%, var(--primary) 100%); background-size: 300% 300%; animation: gradientMove 10s ease infinite; padding: 140px 0 80px; text-align: center; color: var(--white); position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, rgba(212,175,55,0.05) 0%, transparent 50%); animation: float 8s ease-in-out infinite; }
+        .hero::after { content: '🦷'; position: absolute; font-size: 20rem; opacity: 0.03; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: float 6s ease-in-out infinite; }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-logo { max-height: 120px; margin-bottom: 20px; border-radius: 15px; box-shadow: 0 10px 40px rgba(212,175,55,0.2); transition: var(--transition); animation: float 4s ease-in-out infinite; }
+        .hero-logo:hover { transform: scale(1.05) rotate(-2deg); box-shadow: 0 20px 60px rgba(212,175,55,0.4); }
+        .hero h1 { font-size: 2.8rem; color: var(--gold); margin-bottom: 10px; animation: glow 3s ease-in-out infinite; }
+        .hero .sub-title { font-size: 1.4rem; color: var(--silver); margin-bottom: 10px; display: inline-block; overflow: hidden; white-space: nowrap; border-left: 3px solid var(--gold); padding-right: 10px; animation: typewriter 3s steps(40) 1s forwards, blink 0.8s step-end infinite; width: 0; }
+        .hero p { font-size: 1.2rem; color: #aaa; margin-bottom: 30px; }
         .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
-        .btn-primary { background: var(--gold); color: var(--primary); padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-block; border: none; cursor: pointer; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
-        .btn-whatsapp { background: #25D366; color: white; padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
-        .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
-        .btn-secondary { background: #333; color: white; padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-block; border: none; cursor: pointer; }
-        .btn-secondary:hover { transform: translateY(-3px); background: #555; }
-        .section-title { font-size: 2rem; text-align: center; margin-bottom: 40px; color: var(--primary); position: relative; }
-        .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 10px auto 0; }
-        .categories, .featured-products { padding: 60px 0; }
-        .categories { background: var(--light-gray); }
+        .btn-primary { background: linear-gradient(135deg, var(--gold), #c9a84c); color: var(--primary); padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-block; border: none; cursor: pointer; box-shadow: 0 5px 25px rgba(212,175,55,0.3); }
+        .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 40px rgba(212,175,55,0.5); }
+        .btn-whatsapp { background: linear-gradient(135deg, #25D366, #1da851); color: white; padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; box-shadow: 0 5px 25px rgba(37,211,102,0.3); }
+        .btn-whatsapp:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 40px rgba(37,211,102,0.5); }
+        .btn-secondary { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); color: white; padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-block; border: 2px solid rgba(255,255,255,0.2); cursor: pointer; }
+        .btn-secondary:hover { transform: translateY(-3px); background: rgba(255,255,255,0.2); }
+
+        /* ===== SECTION TITLE ===== */
+        .section-title { font-size: 2.2rem; text-align: center; margin-bottom: 40px; color: var(--primary); position: relative; }
+        .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: linear-gradient(90deg, var(--gold), transparent); margin: 10px auto 0; border-radius: 2px; }
+        .section-title .highlight { color: var(--gold); }
+
+        /* ===== CATEGORIES ===== */
+        .categories { padding: 60px 0; background: var(--light-gray); }
         .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
-        .category-card { background: var(--white); padding: 25px 15px; text-align: center; border-radius: 10px; box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); border: 2px solid transparent; }
-        .category-card:hover { transform: translateY(-5px); border-color: var(--gold); }
-        .category-card i { font-size: 2rem; color: var(--gold); margin-bottom: 10px; }
+        .category-card { background: var(--white); padding: 25px 15px; text-align: center; border-radius: 12px; box-shadow: var(--shadow); cursor: pointer; transition: var(--transition); border: 2px solid transparent; position: relative; overflow: hidden; }
+        .category-card::before { content: ''; position: absolute; top: 0; right: 0; width: 100%; height: 100%; background: linear-gradient(135deg, var(--gold), transparent); opacity: 0; transition: var(--transition); }
+        .category-card:hover::before { opacity: 0.05; }
+        .category-card:hover { transform: translateY(-8px) scale(1.02); border-color: var(--gold); box-shadow: 0 15px 40px rgba(212,175,55,0.2); }
+        .category-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 10px; display: block; }
         .category-card span { display: block; font-weight: bold; }
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 25px; }
-        .product-card { background: var(--white); border-radius: 10px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid #eee; }
-        .product-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
-        .product-image { width: 100%; height: 200px; object-fit: cover; background: var(--light-gray); }
-        .product-info { padding: 15px; }
-        .product-name { font-size: 1rem; font-weight: bold; margin-bottom: 5px; color: var(--primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+        /* ===== PRODUCTS ===== */
+        .featured-products { padding: 60px 0; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 25px; }
+        .product-card { background: var(--white); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); border: 1px solid #eee; opacity: 0; animation: fadeInUp 0.6s ease forwards; }
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+        .product-card:hover { transform: translateY(-8px); box-shadow: 0 15px 50px rgba(0,0,0,0.15); border-color: var(--gold); }
+        .product-image { width: 100%; height: 220px; object-fit: cover; background: var(--light-gray); transition: var(--transition); }
+        .product-card:hover .product-image { transform: scale(1.03); }
+        .product-info { padding: 18px; }
+        .product-name { font-size: 1.05rem; font-weight: bold; margin-bottom: 5px; color: var(--primary); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .product-category { color: var(--gold); font-size: 0.8rem; margin-bottom: 5px; }
-        .product-price { font-size: 1.2rem; font-weight: bold; color: var(--primary); margin: 10px 0; }
-        .product-description { color: #666; font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px; }
+        .product-price { font-size: 1.3rem; font-weight: bold; color: var(--primary); margin: 10px 0; }
+        .product-price .currency { color: var(--gold); font-size: 0.9rem; }
+        .product-description { color: #666; font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 12px; }
         .product-actions { display: flex; gap: 10px; flex-wrap: wrap; }
-        .btn-whatsapp-small { background: #25D366; color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; transition: var(--transition); flex: 1; justify-content: center; border: none; cursor: pointer; }
-        .btn-whatsapp-small:hover { background: #1da851; transform: scale(1.02); }
-        .btn-cart { background: var(--gold); color: var(--primary); padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; transition: var(--transition); flex: 1; justify-content: center; }
-        .btn-cart:hover { background: #c4a035; transform: scale(1.02); }
-        .footer { background: var(--primary); color: var(--white); padding: 60px 0 20px; margin-top: 40px; }
+        .btn-whatsapp-small { background: linear-gradient(135deg, #25D366, #1da851); color: white; padding: 8px 15px; border-radius: 25px; text-decoration: none; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; transition: var(--transition); flex: 1; justify-content: center; border: none; cursor: pointer; }
+        .btn-whatsapp-small:hover { transform: scale(1.03); box-shadow: 0 5px 20px rgba(37,211,102,0.3); }
+        .btn-cart { background: linear-gradient(135deg, var(--gold), #c9a84c); color: var(--primary); padding: 8px 15px; border: none; border-radius: 25px; cursor: pointer; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 5px; transition: var(--transition); flex: 1; justify-content: center; }
+        .btn-cart:hover { transform: scale(1.03); box-shadow: 0 5px 20px rgba(212,175,55,0.3); }
+
+        /* ===== FOOTER ===== */
+        .footer { background: var(--primary); color: var(--white); padding: 60px 0 20px; margin-top: 40px; border-top: 3px solid var(--gold); }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-col h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.1rem; }
-        .footer-col p, .footer-col a { color: #ccc; font-size: 0.9rem; line-height: 2; text-decoration: none; display: block; cursor: pointer; }
-        .footer-col a:hover { color: var(--gold); }
+        .footer-col h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.1rem; position: relative; display: inline-block; }
+        .footer-col h3::after { content: ''; position: absolute; bottom: -5px; right: 0; width: 30px; height: 2px; background: var(--gold); }
+        .footer-col p, .footer-col a { color: #ccc; font-size: 0.9rem; line-height: 2; text-decoration: none; display: block; transition: var(--transition); cursor: pointer; }
+        .footer-col a:hover { color: var(--gold); padding-right: 8px; }
         .footer-social { display: flex; gap: 15px; margin-top: 15px; }
-        .footer-social a { color: var(--white); font-size: 1.2rem; transition: var(--transition); }
-        .footer-social a:hover { color: var(--gold); transform: translateY(-3px); }
+        .footer-social a { color: var(--white); font-size: 1.3rem; transition: var(--transition); display: inline-block; }
+        .footer-social a:hover { color: var(--gold); transform: translateY(-3px) scale(1.1); }
         .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #333; color: #666; font-size: 0.8rem; }
-        .notification { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 15px 25px; border-radius: 10px; z-index: 9999; font-weight: bold; box-shadow: 0 5px 20px rgba(0,0,0,0.2); animation: slideUp 0.3s ease; }
+
+        /* ===== NOTIFICATION ===== */
+        .notification { position: fixed; bottom: 20px; right: 20px; background: linear-gradient(135deg, #25D366, #1da851); color: white; padding: 15px 25px; border-radius: 12px; z-index: 9999; font-weight: bold; box-shadow: 0 10px 40px rgba(0,0,0,0.3); animation: slideUp 0.3s ease; }
         @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-        
-        /* ===== Admin ===== */
+
+        /* ===== ORDER FORM ===== */
+        .order-form { background: white; padding: 30px; border-radius: 12px; box-shadow: var(--shadow); max-width: 500px; margin: 0 auto; }
+        .order-form h2 { color: var(--gold); margin-bottom: 20px; text-align: center; }
+        .order-form label { display: block; font-weight: bold; margin-bottom: 5px; color: var(--primary); }
+        .order-form input, .order-form select, .order-form textarea { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: var(--transition); }
+        .order-form input:focus, .order-form textarea:focus { border-color: var(--gold); outline: none; box-shadow: 0 0 0 3px rgba(212,175,55,0.1); }
+        .order-form textarea { min-height: 80px; resize: vertical; }
+        .order-form .payment-methods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+        .order-form .payment-methods label { font-weight: normal; display: flex; align-items: center; gap: 8px; padding: 10px 12px; border: 2px solid #eee; border-radius: 8px; cursor: pointer; transition: var(--transition); font-size: 0.9rem; }
+        .order-form .payment-methods label:hover { border-color: var(--gold); background: #fdf8ed; }
+        .order-form .payment-methods input[type="radio"] { width: auto; margin: 0; }
+        .order-form .payment-methods .selected { border-color: var(--gold); background: #fdf8ed; box-shadow: 0 0 0 3px rgba(212,175,55,0.1); }
+        .order-form .btn-submit-order { background: linear-gradient(135deg, #25D366, #1da851); color: white; padding: 15px 30px; border: none; border-radius: 50px; font-size: 1.1rem; font-weight: bold; cursor: pointer; transition: var(--transition); width: 100%; }
+        .order-form .btn-submit-order:hover { transform: scale(1.02); box-shadow: 0 10px 40px rgba(37,211,102,0.4); }
+        .order-summary { background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-right: 4px solid var(--gold); }
+        .order-summary h3 { color: var(--gold); margin-bottom: 10px; }
+        .order-summary .item { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px solid #eee; }
+        .order-summary .total { font-weight: bold; font-size: 1.2rem; margin-top: 10px; text-align: left; color: var(--gold); }
+
+        /* ===== ADMIN ===== */
         .admin-container { padding: 100px 20px 60px; max-width: 1200px; margin: 0 auto; }
         .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
         .admin-header h1 { color: var(--gold); }
-        .admin-form { background: white; padding: 30px; border-radius: 10px; box-shadow: var(--shadow); margin-bottom: 30px; }
-        .admin-form input, .admin-form select, .admin-form textarea { width: 100%; padding: 10px 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; font-family: inherit; }
-        .admin-form textarea { min-height: 80px; resize: vertical; }
+        .admin-form { background: white; padding: 30px; border-radius: 12px; box-shadow: var(--shadow); margin-bottom: 30px; border-top: 4px solid var(--gold); }
+        .admin-form input, .admin-form select, .admin-form textarea { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: var(--transition); }
+        .admin-form input:focus, .admin-form textarea:focus { border-color: var(--gold); outline: none; }
         .admin-form .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .admin-form .btn-submit { background: var(--gold); color: var(--primary); padding: 12px 30px; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; transition: var(--transition); }
-        .admin-form .btn-submit:hover { transform: scale(1.02); }
-        .admin-products { background: white; padding: 20px; border-radius: 10px; box-shadow: var(--shadow); overflow-x: auto; }
+        .admin-form .btn-submit { background: linear-gradient(135deg, var(--gold), #c9a84c); color: var(--primary); padding: 12px 30px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; transition: var(--transition); }
+        .admin-form .btn-submit:hover { transform: scale(1.02); box-shadow: 0 5px 20px rgba(212,175,55,0.3); }
+        .admin-products { background: white; padding: 20px; border-radius: 12px; box-shadow: var(--shadow); overflow-x: auto; }
         .admin-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; min-width: 600px; }
         .admin-table th { background: var(--primary); color: var(--gold); padding: 12px; text-align: right; }
         .admin-table td { padding: 10px 12px; border-bottom: 1px solid #eee; vertical-align: middle; }
         .admin-table tr:hover { background: #f9f9f9; }
-        .admin-table .btn-delete { background: #e74c3c; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; }
-        .admin-table .btn-delete:hover { background: #c0392b; }
-        .admin-table .btn-edit { background: var(--gold); color: var(--primary); border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; margin-left: 5px; }
-        .admin-table .btn-edit:hover { background: #c4a035; }
-        .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: 5px; }
+        .admin-table .btn-delete { background: #e74c3c; color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; transition: var(--transition); }
+        .admin-table .btn-delete:hover { background: #c0392b; transform: scale(1.05); }
+        .admin-table .btn-edit { background: var(--gold); color: var(--primary); border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; margin-left: 5px; transition: var(--transition); }
+        .admin-table .btn-edit:hover { background: #c4a035; transform: scale(1.05); }
+        .admin-table img { width: 50px; height: 50px; object-fit: cover; border-radius: 8px; }
         .admin-search { margin-bottom: 20px; display: flex; gap: 10px; flex-wrap: wrap; }
-        .admin-search input { flex: 1; padding: 10px 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; min-width: 200px; }
-        .admin-search button { background: var(--gold); color: var(--primary); border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        .admin-search input { flex: 1; padding: 12px 15px; border: 2px solid #eee; border-radius: 8px; font-size: 1rem; min-width: 200px; transition: var(--transition); }
+        .admin-search input:focus { border-color: var(--gold); outline: none; }
+        .admin-search button { background: var(--gold); color: var(--primary); border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: var(--transition); }
+        .admin-search button:hover { transform: scale(1.02); }
         .empty-state { text-align: center; padding: 40px; color: #999; }
         .empty-state i { font-size: 3rem; margin-bottom: 10px; display: block; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
+
+        /* ===== MODAL ===== */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); backdrop-filter: blur(5px); z-index: 2000; justify-content: center; align-items: center; padding: 20px; }
         .modal-overlay.active { display: flex; }
-        .modal-content { background: white; padding: 30px; border-radius: 10px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.3); }
+        .modal-content { background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3); animation: bounceIn 0.5s ease; border-top: 4px solid var(--gold); }
         .modal-content h2 { color: var(--gold); margin-bottom: 20px; }
         .modal-content .current-image { text-align: center; margin-bottom: 15px; }
         .modal-content .current-image img { max-width: 200px; max-height: 200px; border-radius: 10px; border: 2px solid #eee; }
-        .modal-content input, .modal-content select, .modal-content textarea { width: 100%; padding: 10px 15px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; font-family: inherit; }
+        .modal-content input, .modal-content select, .modal-content textarea { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 2px solid #eee; border-radius: 8px; font-size: 1rem; font-family: inherit; transition: var(--transition); }
+        .modal-content input:focus, .modal-content textarea:focus { border-color: var(--gold); outline: none; }
         .modal-content textarea { min-height: 80px; resize: vertical; }
         .modal-buttons { display: flex; gap: 10px; flex-wrap: wrap; }
-        .modal-buttons button { padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; flex: 1; min-width: 100px; }
+        .modal-buttons button { padding: 10px 20px; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; flex: 1; min-width: 100px; transition: var(--transition); }
+        .modal-buttons button:hover { transform: scale(1.02); }
         .btn-save { background: var(--gold); color: var(--primary); }
         .btn-delete-image { background: #e74c3c; color: white; }
         .btn-cancel { background: #999; color: white; }
-        
-        /* ===== Order Form ===== */
-        .order-form {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            max-width: 500px;
-            margin: 0 auto;
-        }
-        .order-form h2 {
-            color: var(--gold);
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .order-form label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            color: var(--primary);
-        }
-        .order-form input, .order-form select, .order-form textarea {
-            width: 100%;
-            padding: 10px 15px;
-            margin-bottom: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
-        .order-form textarea {
-            min-height: 80px;
-            resize: vertical;
-        }
-        .order-form .payment-methods {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
-        }
-        .order-form .payment-methods label {
-            font-weight: normal;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-        .order-form .payment-methods label:hover {
-            border-color: var(--gold);
-        }
-        .order-form .payment-methods input[type="radio"] {
-            width: auto;
-            margin: 0;
-        }
-        .order-form .payment-methods .selected {
-            border-color: var(--gold);
-            background: #fdf8ed;
-        }
-        .order-form .btn-submit-order {
-            background: #25D366;
-            color: white;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 30px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: var(--transition);
-            width: 100%;
-        }
-        .order-form .btn-submit-order:hover {
-            transform: scale(1.02);
-            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
-        }
-        .order-summary {
-            background: #f9f9f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .order-summary h3 {
-            color: var(--gold);
-            margin-bottom: 10px;
-        }
-        .order-summary .item {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .order-summary .total {
-            font-weight: bold;
-            font-size: 1.2rem;
-            margin-top: 10px;
-            text-align: left;
-        }
 
         .page { display: none; }
         .page.active { display: block; }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
-            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--primary); padding: 20px; gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--primary); padding: 20px; gap: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border-bottom: 2px solid var(--gold); }
             .nav-links.active { display: flex; }
             .hero h1 { font-size: 1.8rem; }
+            .hero .sub-title { font-size: 1rem; white-space: normal; border-left: none; animation: none; width: auto; }
+            .hero-logo { max-height: 80px; }
             .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
             .product-image { height: 150px; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -223,8 +206,9 @@
             .order-form .payment-methods { grid-template-columns: 1fr 1fr; }
         }
         @media (max-width: 480px) {
-            .hero { padding: 100px 0 60px; }
+            .hero { padding: 120px 0 40px; }
             .hero h1 { font-size: 1.4rem; }
+            .hero .sub-title { font-size: 0.9rem; }
             .products-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
             .product-image { height: 120px; }
             .product-info { padding: 10px; }
@@ -238,7 +222,13 @@
 
 <nav class="navbar">
     <div class="nav-container">
-        <div class="nav-logo"><img src="images/logo.png" alt="Egy Dent" class="logo-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23D4AF37%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%231a1a1a%22 font-size=%2230%22 font-weight=%22bold%22 font-family=%22Arial%22%3EED%3C/text%3E%3C/svg%3E'" /><span class="logo-text">Egy Dent</span></div>
+        <a href="#" onclick="showPage('home')" class="nav-logo">
+            <img src="images/logo.png" alt="Egy Dent" class="logo-img" onerror="this.style.display='none'" />
+            <div>
+                <span class="logo-text">Egy Dent</span>
+                <span class="logo-sub">🦷 THE DENTAL STORE</span>
+            </div>
+        </a>
         <div class="nav-links" id="navLinks">
             <a href="#" onclick="showPage('home')" class="active" id="navHome"><i class="fas fa-home"></i> الرئيسية</a>
             <a href="#" onclick="showPage('products')" id="navProducts"><i class="fas fa-box"></i> المنتجات</a>
@@ -256,24 +246,25 @@
 <div class="page active" id="page-home">
     <section class="hero">
         <div class="hero-content">
-            <img src="images/logo.png" alt="Egy Dent" class="hero-logo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Crect fill=%22%23D4AF37%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%22 y=%2255%22 text-anchor=%22middle%22 fill=%22%231a1a1a%22 font-size=%2230%22 font-weight=%22bold%22 font-family=%22Arial%22%3EED%3C/text%3E%3C/svg%3E'" />
-            <h1>جميع مستلزمات طب الأسنان</h1>
+            <img src="images/logo.png" alt="Egy Dent" class="hero-logo" onerror="this.style.display='none'" />
+            <h1>🦷 Egy Dent</h1>
+            <div class="sub-title">جميع مستلزمات طب الأسنان في مكان واحد</div>
             <p>أفضل المنتجات بأفضل الأسعار في مصر</p>
             <div class="hero-buttons">
-                <a href="#" onclick="showPage('products')" class="btn-primary">تسوق الآن</a>
+                <a href="#" onclick="showPage('products')" class="btn-primary"><i class="fas fa-store"></i> تسوق الآن</a>
                 <a href="https://wa.me/201151605515" class="btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> تواصل واتساب</a>
             </div>
         </div>
     </section>
     <section class="categories">
         <div class="container">
-            <h2 class="section-title">الفئات</h2>
+            <h2 class="section-title">📂 <span class="highlight">الفئات</span></h2>
             <div class="categories-grid" id="categoriesGrid"></div>
         </div>
     </section>
     <section class="featured-products">
         <div class="container">
-            <h2 class="section-title">منتجات مميزة</h2>
+            <h2 class="section-title">⭐ <span class="highlight">منتجات مميزة</span></h2>
             <div class="products-grid" id="featuredProducts"><div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i><p>جاري التحميل...</p></div></div>
         </div>
     </section>
@@ -282,7 +273,7 @@
 <!-- ===== PRODUCTS PAGE ===== -->
 <div class="page" id="page-products">
     <section style="padding:120px 20px 60px;max-width:1200px;margin:0 auto;">
-        <h1 class="section-title">جميع المنتجات</h1>
+        <h1 class="section-title">📦 جميع <span class="highlight">المنتجات</span></h1>
         <div style="margin-bottom:30px;display:flex;gap:10px;flex-wrap:wrap;" id="filterButtons">
             <button class="btn-primary" onclick="filterProducts('all')" style="padding:8px 20px;font-size:0.9rem;">الكل</button>
         </div>
@@ -293,11 +284,11 @@
 <!-- ===== ABOUT PAGE ===== -->
 <div class="page" id="page-about">
     <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
-        <h1 class="section-title">من نحن</h1>
-        <div style="background:white;padding:40px;border-radius:10px;box-shadow:var(--shadow);">
+        <h1 class="section-title">📖 <span class="highlight">من نحن</span></h1>
+        <div style="background:white;padding:40px;border-radius:12px;box-shadow:var(--shadow);border-right:4px solid var(--gold);">
             <h2 style="color:var(--gold);">Egy Dent - The Dental Store</h2>
             <p style="font-size:1.1rem;line-height:1.8;margin:20px 0;">نحن متخصصون في توفير جميع مستلزمات طب الأسنان في مصر. نقدم أفضل المنتجات بأفضل الأسعار لعملائنا الكرام.</p>
-            <h3 style="color:var(--gold);margin-top:30px;">فروعنا</h3>
+            <h3 style="color:var(--gold);margin-top:30px;">📍 فروعنا</h3>
             <p><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> مدينة نصر - ش الطيران ٦٠</p>
             <p><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> القصر العيني - ش بستان الفاضل ٣٠</p>
             <p><i class="fas fa-map-marker-alt" style="color:var(--gold);"></i> أكتوبر - أبراج علي الدين سيتي مول</p>
@@ -308,9 +299,9 @@
 <!-- ===== CONTACT PAGE ===== -->
 <div class="page" id="page-contact">
     <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
-        <h1 class="section-title">اتصل بنا</h1>
-        <div style="background:white;padding:40px;border-radius:10px;box-shadow:var(--shadow);">
-            <h3 style="color:var(--gold);">📞 أرقام التواصل</h3>
+        <h1 class="section-title">📞 <span class="highlight">اتصل بنا</span></h1>
+        <div style="background:white;padding:40px;border-radius:12px;box-shadow:var(--shadow);border-right:4px solid var(--gold);">
+            <h3 style="color:var(--gold);">📱 أرقام التواصل</h3>
             <p style="font-size:1.2rem;padding:10px 0;"><i class="fas fa-phone" style="color:var(--gold);"></i> 01121300354</p>
             <p style="font-size:1.2rem;padding:10px 0;"><i class="fas fa-phone" style="color:var(--gold);"></i> 01151605515</p>
             <p style="font-size:1.2rem;padding:10px 0;"><i class="fas fa-phone" style="color:var(--gold);"></i> 01153859919</p>
@@ -328,21 +319,22 @@
 <!-- ===== SHIPPING PAGE ===== -->
 <div class="page" id="page-shipping">
     <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
-        <h1 class="section-title">سياسة الشحن والتوصيل</h1>
-        <div style="background:white;padding:40px;border-radius:10px;box-shadow:var(--shadow);">
+        <h1 class="section-title">🚚 <span class="highlight">سياسة الشحن</span></h1>
+        <div style="background:white;padding:40px;border-radius:12px;box-shadow:var(--shadow);border-right:4px solid var(--gold);">
             <h3 style="color:var(--gold);">🚚 التوصيل</h3>
             <p style="font-size:1.1rem;line-height:1.8;">نوفر خدمة التوصيل لجميع محافظات مصر</p>
             <ul style="font-size:1.1rem;line-height:2;padding-right:20px;">
-                <li>توصيل سريع خلال 24-48 ساعة</li>
-                <li>توصيل مجاني للطلبات فوق 500 جنيه</li>
-                <li>توصيل خارج القاهرة خلال 3-5 أيام</li>
+                <li>✅ توصيل سريع خلال 24-48 ساعة</li>
+                <li>✅ توصيل مجاني للطلبات فوق 500 جنيه</li>
+                <li>✅ توصيل خارج القاهرة خلال 3-5 أيام</li>
             </ul>
             <hr style="margin:20px 0;" />
             <h3 style="color:var(--gold);">💳 طرق الدفع</h3>
             <ul style="font-size:1.1rem;line-height:2;padding-right:20px;">
-                <li>الدفع عند الاستلام</li>
-                <li>تحويل بنكي</li>
-                <li>دفع عبر فوري</li>
+                <li>✅ الدفع عند الاستلام</li>
+                <li>✅ تحويل بنكي</li>
+                <li>✅ فودافون كاش / إنستا باي / أورنج كاش</li>
+                <li>✅ فيزا / ماستركارد</li>
             </ul>
         </div>
     </section>
@@ -351,8 +343,8 @@
 <!-- ===== CART PAGE ===== -->
 <div class="page" id="page-cart">
     <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
-        <h1 class="section-title">🛒 عربة التسوق</h1>
-        <div id="cartItems" style="background:white;padding:30px;border-radius:10px;box-shadow:var(--shadow);">
+        <h1 class="section-title">🛒 <span class="highlight">عربة التسوق</span></h1>
+        <div id="cartItems" style="background:white;padding:30px;border-radius:12px;box-shadow:var(--shadow);border-right:4px solid var(--gold);">
             <div style="text-align:center;padding:40px;color:#999;">
                 <i class="fas fa-shopping-cart" style="font-size:3rem;display:block;margin-bottom:10px;"></i>
                 <p>عربتك فارغة</p>
@@ -362,34 +354,28 @@
     </section>
 </div>
 
-<!-- ===== ORDER PAGE (NEW) ===== -->
+<!-- ===== ORDER PAGE ===== -->
 <div class="page" id="page-order">
     <section style="padding:120px 20px 60px;max-width:600px;margin:0 auto;">
-        <h1 class="section-title">📝 تأكيد الطلب</h1>
+        <h1 class="section-title">📝 <span class="highlight">تأكيد الطلب</span></h1>
         <div class="order-form" id="orderForm">
-            <h2>بيانات العميل</h2>
-            
+            <h2>🦷 بيانات العميل</h2>
             <div class="order-summary" id="orderSummary">
                 <h3>🛒 ملخص الطلب</h3>
                 <div id="orderItemsList"></div>
                 <div class="total" id="orderTotal">الإجمالي: 0 جنيه</div>
             </div>
-
             <label>👤 الاسم بالكامل *</label>
             <input type="text" id="customerName" placeholder="مثال: أحمد محمد" required />
-
             <label>🏥 عنوان العيادة *</label>
             <input type="text" id="customerAddress" placeholder="مثال: مدينة نصر - شارع الطيران" required />
-
             <label>📱 رقم التليفون *</label>
             <input type="tel" id="customerPhone" placeholder="مثال: 01123456789" required />
-
             <label>📝 ملاحظات إضافية</label>
             <textarea id="customerNotes" placeholder="أي ملاحظات أو طلبات خاصة..."></textarea>
-
             <label style="margin-top:10px;">💳 طريقة الدفع *</label>
             <div class="payment-methods" id="paymentMethods">
-                <label onclick="selectPayment(this)">
+                <label onclick="selectPayment(this)" class="selected">
                     <input type="radio" name="payment" value="فودافون كاش" checked />
                     <i class="fas fa-mobile-alt" style="color:#e60000;"></i> فودافون كاش
                 </label>
@@ -414,7 +400,6 @@
                     <i class="fas fa-hand-holding-usd" style="color:#2e7d32;"></i> الدفع عند الاستلام
                 </label>
             </div>
-
             <button class="btn-submit-order" onclick="submitOrder()">
                 <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
             </button>
@@ -491,7 +476,16 @@
 <footer class="footer">
     <div class="container">
         <div class="footer-grid">
-            <div class="footer-col"><h3>Egy Dent</h3><p>جميع مستلزمات طب الأسنان في مصر</p><div class="footer-social"><a href="#"><i class="fab fa-facebook"></i></a><a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-whatsapp"></i></a></div></div>
+            <div class="footer-col">
+                <h3>🦷 Egy Dent</h3>
+                <p>جميع مستلزمات طب الأسنان في مصر</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
             <div class="footer-col"><h3>روابط سريعة</h3><a href="#" onclick="showPage('home')">الرئيسية</a><a href="#" onclick="showPage('products')">المنتجات</a><a href="#" onclick="showPage('about')">من نحن</a><a href="#" onclick="showPage('contact')">اتصل بنا</a></div>
             <div class="footer-col"><h3>فروعنا</h3><p><i class="fas fa-map-marker-alt"></i> مدينة نصر - ش الطيران ٦٠</p><p><i class="fas fa-map-marker-alt"></i> القصر العيني - ش بستان الفاضل ٣٠</p><p><i class="fas fa-map-marker-alt"></i> أكتوبر - أبراج علي الدين سيتي مول</p></div>
             <div class="footer-col"><h3>اتصل بنا</h3><p><i class="fas fa-phone"></i> 01121300354</p><p><i class="fas fa-phone"></i> 01151605515</p><p><i class="fas fa-phone"></i> 01153859919</p></div>
@@ -531,7 +525,6 @@ let allProducts = [];
 let editingProductId = null;
 let cartItems = [];
 
-// ===== FUNCTIONS =====
 function convertImageToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -561,12 +554,12 @@ function getSessionId() {
 }
 
 function createProductCard(product) {
-    const imageSrc = (product.image && product.image.startsWith('data:image')) ? product.image : (product.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%22100%22 y=%22105%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2220%22 font-family=%22Arial%22%3E%3C/t%3E%3C/svg%3E');
-    const priceDisplay = product.price && product.price.trim() !== '' ? `${product.price} جنيه` : 'السعر غير محدد';
+    const imageSrc = (product.image && product.image.startsWith('data:image')) ? product.image : (product.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 200 200%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22200%22 height=%22200%22/%3E%3Ctext x=%22100%22 y=%22105%22 text-anchor=%22middle%22 fill=%22%23999%22 font-size=%2220%22 font-family=%22Arial%22%3E🦷%3C/text%3E%3C/svg%3E');
+    const priceDisplay = product.price && product.price.trim() !== '' ? `${product.price} <span class="currency">جنيه</span>` : 'السعر غير محدد';
     return `<div class="product-card" data-id="${product.id}">
-        <img src="${imageSrc}" alt="${product.name}" class="product-image" onerror="this.src='data:image/svg+xml,%253Csvg xmlns=%2522http://www.w3.org/2000/svg%2522 viewBox=%25220 0 200 200%2522%253E%253Crect fill=%2522%2523f0f0f0%2522 width=%2522200%2522 height=%2522200%2522/%253E%253Ctext x=%2522100%2522 y=%2522105%2522 text-anchor=%2522middle%2522 fill=%2522%2523999%2522 font-size=%252220%2522 font-family=%2522Arial%2522%253E%25D8%25B5%25D9%2588%25D8%25B1%25D8%25A9%253C/text%253E%253C/svg%253E'">
+        <img src="${imageSrc}" alt="${product.name}" class="product-image" onerror="this.src='data:image/svg+xml,%253Csvg xmlns=%2522http://www.w3.org/2000/svg%2522 viewBox=%25220 0 200 200%2522%253E%253Crect fill=%2522%2523f0f0f0%2522 width=%2522200%2522 height=%2522200%2522/%253E%253Ctext x=%2522100%2522 y=%2522105%2522 text-anchor=%2522middle%2522 fill=%2522%2523999%2522 font-size=%252240%2522 font-family=%2522Arial%2522%253E🦷%253C/text%253E%253C/svg%253E'">
         <div class="product-info">
-            <div class="product-category">${product.category || 'عام'}</div>
+            <div class="product-category"><i class="fas fa-tag"></i> ${product.category || 'عام'}</div>
             <h3 class="product-name">${product.name}</h3>
             <p class="product-description">${product.description || ''}</p>
             <div class="product-price">${priceDisplay}</div>
@@ -578,15 +571,10 @@ function createProductCard(product) {
     </div>`;
 }
 
-// ===== OPEN ORDER FORM =====
 window.openOrder = function(productId) {
     const product = allProducts.find(p => p.id === productId);
     if (!product) return;
-    
-    // Save product to order
     localStorage.setItem('orderProduct', JSON.stringify(product));
-    
-    // Show order page
     showPage('order');
     displayOrderSummary();
 };
@@ -598,10 +586,8 @@ function displayOrderSummary() {
         document.getElementById('orderTotal').textContent = 'الإجمالي: 0 جنيه';
         return;
     }
-    
     const product = JSON.parse(productData);
     const price = parseFloat(product.price) || 0;
-    
     document.getElementById('orderItemsList').innerHTML = `
         <div class="item">
             <span>${product.name}</span>
@@ -611,26 +597,20 @@ function displayOrderSummary() {
     document.getElementById('orderTotal').textContent = `الإجمالي: ${price} جنيه`;
 }
 
-// ===== SUBMIT ORDER =====
 window.submitOrder = function() {
     const name = document.getElementById('customerName').value.trim();
     const address = document.getElementById('customerAddress').value.trim();
     const phone = document.getElementById('customerPhone').value.trim();
     const notes = document.getElementById('customerNotes').value.trim();
     const payment = document.querySelector('input[name="payment"]:checked');
-    
     if (!name) { alert('من فضلك أدخل الاسم'); return; }
     if (!address) { alert('من فضلك أدخل عنوان العيادة'); return; }
     if (!phone) { alert('من فضلك أدخل رقم التليفون'); return; }
     if (!payment) { alert('من فضلك اختر طريقة الدفع'); return; }
-    
     const productData = localStorage.getItem('orderProduct');
     if (!productData) { alert('لا توجد منتجات للطلب'); return; }
-    
     const product = JSON.parse(productData);
     const price = parseFloat(product.price) || 0;
-    
-    // Build WhatsApp message
     const message = `🦷 *طلب شراء من Egy Dent*\n\n` +
         `👤 *الاسم:* ${name}\n` +
         `🏥 *العيادة:* ${address}\n` +
@@ -641,28 +621,19 @@ window.submitOrder = function() {
         (notes ? `📝 *ملاحظات:* ${notes}\n` : '') +
         `\n--------------------\n` +
         `تم إرسال الطلب من موقع Egy Dent`;
-    
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/201151605515?text=${encodedMessage}`;
-    
-    // Open WhatsApp
     window.open(whatsappUrl, '_blank');
-    
-    // Show notification
     showNotification('✅ تم إرسال الطلب عبر واتساب');
-    
-    // Clear order
     localStorage.removeItem('orderProduct');
 };
 
-// ===== SELECT PAYMENT =====
 window.selectPayment = function(label) {
     document.querySelectorAll('.payment-methods label').forEach(l => l.classList.remove('selected'));
     label.classList.add('selected');
     label.querySelector('input[type="radio"]').checked = true;
 };
 
-// ===== LOAD PRODUCTS =====
 function loadProducts() {
     const productsRef = ref(database, 'products');
     onValue(productsRef, (snapshot) => {
@@ -722,7 +693,7 @@ function updateAdminList() {
     let html = '<table class="admin-table"><thead><tr><th>الصورة</th><th>الاسم</th><th>الفئة</th><th>السعر</th><th>الإجراءات</th></tr></thead><tbody>';
     allProducts.forEach(p => {
         const src = (p.image && p.image.startsWith('data:image')) ? p.image : (p.image || 'data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 50 50%22%3E%3Crect fill=%22%23f0f0f0%22 width=%2250%22 height=%2250%22/%3E%3C/svg%3E');
-        html += `<tr data-id="${p.id}"><td><img src="${src}" onerror="this.src='data:image/svg+xml,%253Csvg xmlns=%2522http://www.w3.org/2000/svg%2522 viewBox=%25220 0 50 50%2522%253E%253Crect fill=%2522%2523f0f0f0%2522 width=%252250%2522 height=%252250%2522/%253E%253C/svg%253E'" style="width:50px;height:50px;object-fit:cover;border-radius:5px;" /></td><td>${p.name}</td><td>${p.category||'عام'}</td><td>${p.price||'غير محدد'}</td><td><button class="btn-edit" onclick="window.editProduct('${p.id}')"><i class="fas fa-edit"></i></button> <button class="btn-delete" onclick="window.deleteProduct('${p.id}')"><i class="fas fa-trash"></i></button></td></tr>`;
+        html += `<tr data-id="${p.id}"><td><img src="${src}" onerror="this.src='data:image/svg+xml,%253Csvg xmlns=%2522http://www.w3.org/2000/svg%2522 viewBox=%25220 0 50 50%2522%253E%253Crect fill=%2522%2523f0f0f0%2522 width=%252250%2522 height=%252250%2522/%253E%253C/svg%253E'" style="width:50px;height:50px;object-fit:cover;border-radius:8px;" /></td><td>${p.name}</td><td>${p.category||'عام'}</td><td>${p.price||'غير محدد'}</td><td><button class="btn-edit" onclick="window.editProduct('${p.id}')"><i class="fas fa-edit"></i></button> <button class="btn-delete" onclick="window.deleteProduct('${p.id}')"><i class="fas fa-trash"></i></button></td></tr>`;
     });
     html += '</tbody></table>';
     container.innerHTML = html;
@@ -750,11 +721,7 @@ window.showPage = function(page) {
     const navItem = document.getElementById(navMap[page]);
     if (navItem) navItem.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    
-    // Refresh order summary if order page
-    if (page === 'order') {
-        displayOrderSummary();
-    }
+    if (page === 'order') { displayOrderSummary(); }
 };
 
 window.filterByCategory = function(category) {
@@ -861,17 +828,14 @@ window.searchProducts = function() {
     });
 };
 
-// ===== NAV TOGGLE =====
 document.getElementById('navToggle').addEventListener('click', () => {
     document.getElementById('navLinks').classList.toggle('active');
 });
 
-// ===== MODAL CLOSE =====
 document.getElementById('editModal').addEventListener('click', function(e) {
     if (e.target === this) closeEditModal();
 });
 
-// ===== CART PAGE OBSERVER =====
 const cartObserver = new MutationObserver(() => {
     if (document.getElementById('page-cart').classList.contains('active')) {
         const sessionId = getSessionId();
@@ -899,7 +863,7 @@ const cartObserver = new MutationObserver(() => {
                     </div>`;
                 }
             });
-            html += `<div style="text-align:left;padding:15px 0;font-size:1.2rem;font-weight:bold;">الإجمالي: ${total} جنيه</div>`;
+            html += `<div style="text-align:left;padding:15px 0;font-size:1.2rem;font-weight:bold;color:var(--gold);">الإجمالي: ${total} جنيه</div>`;
             html += `<button class="btn-whatsapp" onclick="openOrderFromCart()" style="display:inline-block;width:100%;justify-content:center;"><i class="fab fa-whatsapp"></i> إتمام الطلب</button>`;
             html += '</div>';
             container.innerHTML = html;
@@ -917,7 +881,6 @@ window.openOrderFromCart = function() {
             alert('عربتك فارغة');
             return;
         }
-        // Get first product from cart
         const firstId = Object.keys(data)[0];
         const product = allProducts.find(p => p.id === firstId);
         if (product) {
@@ -928,10 +891,9 @@ window.openOrderFromCart = function() {
     });
 };
 
-// ===== START =====
 loadProducts();
 
-console.log('🚀 Egy Dent is running!');
+console.log('🦷 Egy Dent is running!');
 </script>
 
 </body>
