@@ -248,23 +248,6 @@
             .admin-table { font-size: 0.75rem; min-width: 400px; }
             .order-form .payment-methods { grid-template-columns: 1fr 1fr; }
             .page-header { flex-direction: column; align-items: flex-start; }
-            .character-body { width: 80px; height: 110px; }
-            .character-head { width: 55px; height: 55px; }
-            .character-eyes { gap: 12px; padding-top: 15px; }
-            .eye { width: 12px; height: 12px; }
-            .pupil { width: 6px; height: 6px; }
-            .character-smile { width: 20px; height: 10px; }
-            .character-hair { width: 60px; height: 25px; top: -8px; }
-            .character-hair::after { width: 20px; height: 20px; top: -12px; }
-            .character-mask { width: 40px; height: 18px; top: 12px; }
-            .character-body-shape { width: 50px; height: 50px; margin-top: -8px; }
-            .character-chest { width: 25px; height: 25px; }
-            .character-logo { font-size: 1rem; }
-            .character-cape { width: 20px; height: 55px; right: -15px; top: 5px; }
-            .speech-bubble { top: -80px; left: 60px; padding: 10px 15px; min-width: 150px; }
-            .bubble-text { font-size: 0.75rem; }
-            .bubble-text.gold { font-size: 0.9rem; }
-            .bubble-text.small { font-size: 0.6rem; }
         }
         @media (max-width: 480px) {
             .hero { padding: 120px 0 40px; }
@@ -275,23 +258,6 @@
             .product-name { font-size: 0.85rem; }
             .footer-grid { grid-template-columns: 1fr; }
             .order-form .payment-methods { grid-template-columns: 1fr; }
-            .speech-bubble { top: -70px; left: 40px; padding: 8px 12px; min-width: 120px; }
-            .bubble-text { font-size: 0.65rem; }
-            .bubble-text.gold { font-size: 0.8rem; }
-            .bubble-text.small { font-size: 0.55rem; }
-            .character-body { width: 60px; height: 85px; }
-            .character-head { width: 40px; height: 40px; }
-            .character-eyes { gap: 8px; padding-top: 10px; }
-            .eye { width: 8px; height: 8px; }
-            .pupil { width: 4px; height: 4px; }
-            .character-hair { width: 45px; height: 20px; top: -6px; }
-            .character-hair::after { width: 15px; height: 15px; top: -10px; }
-            .character-mask { width: 30px; height: 12px; top: 10px; }
-            .character-smile { width: 15px; height: 8px; }
-            .character-body-shape { width: 38px; height: 38px; margin-top: -5px; }
-            .character-chest { width: 18px; height: 18px; }
-            .character-logo { font-size: 0.7rem; }
-            .character-cape { width: 15px; height: 40px; right: -10px; top: 0px; }
         }
     </style>
 </head>
@@ -320,7 +286,6 @@
 </nav>
 
 <!-- ===== HOME ===== -->
-<!-- ===== HOME ===== -->
 <div class="page active" id="page-home">
     <section class="hero">
         <div class="hero-content">
@@ -330,7 +295,7 @@
             <div class="character-wrapper">
                 <div class="character">
                     <div class="character-body" style="background: none; box-shadow: none; width: auto; height: auto; margin: 0;">
-                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMxNwvMMvP8WuDLcbDQAuAZVCCRDcGbPRWpoN_pB-yEw&s=10" 
+                        <img src="https://i.pinimg.com/564x/6f/5c/6e/6f5c6e7c8d9f0a1b2c3d4e5f6a7b8c9d.jpg" 
                              alt="سوبر مان" 
                              style="width: 150px; height: auto; border-radius: 15px; 
                                     box-shadow: 0 10px 40px rgba(212,175,55,0.3);
@@ -357,16 +322,14 @@
             </div>
         </div>
     </section>
-    <!-- باقي الكود (الفئات والمنتجات) -->
-</div>
-        </div>
-    </section>
+    
     <section class="categories">
         <div class="container">
             <h2 class="section-title">📂 <span class="highlight">الفئات</span></h2>
             <div class="categories-grid" id="categoriesGrid"></div>
         </div>
     </section>
+    
     <section class="featured-products">
         <div class="container">
             <h2 class="section-title">⭐ <span class="highlight">منتجات مميزة</span></h2>
@@ -375,6 +338,7 @@
     </section>
 </div>
 
+<!-- ===== باقي الصفحات (products, about, contact, shipping, cart, order, admin) ===== -->
 <!-- ===== PRODUCTS ===== -->
 <div class="page" id="page-products">
     <section style="padding:120px 20px 60px;max-width:1200px;margin:0 auto;">
