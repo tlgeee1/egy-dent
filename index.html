@@ -20,6 +20,12 @@
         @keyframes glow { 0% { text-shadow: 0 0 10px rgba(212,175,55,0.3); } 50% { text-shadow: 0 0 30px rgba(212,175,55,0.6); } 100% { text-shadow: 0 0 10px rgba(212,175,55,0.3); } }
         @keyframes gradientMove { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
         @keyframes bounceIn { 0% { transform: scale(0.3); opacity: 0; } 50% { transform: scale(1.05); } 70% { transform: scale(0.9); } 100% { transform: scale(1); opacity: 1; } }
+        @keyframes floatCharacter { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+        @keyframes lookAround { 0%, 100% { transform: translate(-50%, -50%); } 25% { transform: translate(-30%, -50%); } 50% { transform: translate(-50%, -30%); } 75% { transform: translate(-70%, -50%); } }
+        @keyframes smilePulse { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(1.1); } }
+        @keyframes capeWave { 0%, 100% { transform: rotate(-10deg) scaleX(1); } 50% { transform: rotate(-5deg) scaleX(1.1); } }
+        @keyframes bubblePop { 0% { transform: scale(0) rotate(-10deg); opacity: 0; } 70% { transform: scale(1.1) rotate(2deg); opacity: 1; } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
+        @keyframes bubbleFloat { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-5px) rotate(1deg); } }
 
         .animate-fade { animation: fadeInUp 0.8s ease forwards; }
         .animate-float { animation: float 3s ease-in-out infinite; }
@@ -55,6 +61,33 @@
         .hero p { font-size: 1.2rem; color: #aaa; margin-bottom: 30px; }
         .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
+        /* ===== CHARACTER ===== */
+        .character-wrapper { display: flex; justify-content: center; margin-bottom: 20px; position: relative; }
+        .character { position: relative; display: inline-block; animation: floatCharacter 3s ease-in-out infinite; }
+        .character-body { position: relative; width: 120px; height: 160px; margin: 0 auto; }
+        .character-head { position: relative; width: 80px; height: 80px; background: #fdbcb4; border-radius: 50%; margin: 0 auto; z-index: 2; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+        .character-eyes { display: flex; gap: 20px; justify-content: center; padding-top: 25px; }
+        .eye { width: 16px; height: 16px; background: white; border-radius: 50%; position: relative; box-shadow: inset 0 2px 4px rgba(0,0,0,0.1); }
+        .pupil { width: 8px; height: 8px; background: #2c3e50; border-radius: 50%; position: absolute; top: 50%; left: 50%; animation: lookAround 4s ease-in-out infinite; }
+        .character-smile { width: 30px; height: 15px; border-bottom: 3px solid #e74c3c; border-radius: 0 0 50% 50%; margin: 5px auto 0; animation: smilePulse 2s ease-in-out infinite; }
+        .character-hair { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 90px; height: 40px; background: #2c3e50; border-radius: 50% 50% 0 0; z-index: 1; }
+        .character-hair::after { content: ''; position: absolute; top: -15px; left: 50%; transform: translateX(-50%); width: 30px; height: 30px; background: #2c3e50; border-radius: 50%; }
+        .character-mask { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); width: 60px; height: 25px; background: #e74c3c; border-radius: 0 0 50% 50%; z-index: 3; opacity: 0.3; }
+        .character-body-shape { position: relative; width: 70px; height: 70px; background: #3498db; margin: -10px auto 0; border-radius: 10px 10px 20px 20px; z-index: 1; box-shadow: 0 4px 15px rgba(0,0,0,0.15); }
+        .character-chest { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 35px; height: 35px; background: #2980b9; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .character-logo { font-size: 1.5rem; }
+        .character-cape { position: absolute; top: 10px; right: -25px; width: 30px; height: 80px; background: #e74c3c; border-radius: 0 50% 50% 0; transform: rotate(-10deg); z-index: 0; animation: capeWave 2s ease-in-out infinite; }
+
+        /* ===== SPEECH BUBBLE ===== */
+        .speech-bubble { position: absolute; top: -100px; left: 110px; background: white; padding: 15px 20px; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.2); min-width: 200px; animation: bubblePop 0.8s ease forwards, bubbleFloat 3s ease-in-out infinite 0.8s; border: 3px solid var(--gold); z-index: 10; }
+        .bubble-content { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+        .bubble-text { font-size: 0.9rem; font-weight: bold; color: var(--primary); text-align: center; }
+        .bubble-text.gold { color: var(--gold); font-size: 1.1rem; }
+        .bubble-text.small { font-size: 0.7rem; color: #666; font-weight: normal; }
+        .bubble-tail { position: absolute; bottom: -15px; left: 30px; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-top: 18px solid white; filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1)); }
+        .bubble-tail::after { content: ''; position: absolute; top: -20px; left: -14px; width: 0; height: 0; border-left: 14px solid transparent; border-right: 14px solid transparent; border-top: 20px solid var(--gold); z-index: -1; }
+
+        /* ===== BUTTONS ===== */
         .btn-primary { background: linear-gradient(135deg, var(--gold), #c9a84c); color: var(--primary); padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-block; border: none; cursor: pointer; box-shadow: 0 5px 25px rgba(212,175,55,0.3); }
         .btn-primary:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 40px rgba(212,175,55,0.5); }
         .btn-whatsapp { background: linear-gradient(135deg, #25D366, #1da851); color: white; padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; box-shadow: 0 5px 25px rgba(37,211,102,0.3); }
@@ -215,6 +248,23 @@
             .admin-table { font-size: 0.75rem; min-width: 400px; }
             .order-form .payment-methods { grid-template-columns: 1fr 1fr; }
             .page-header { flex-direction: column; align-items: flex-start; }
+            .character-body { width: 80px; height: 110px; }
+            .character-head { width: 55px; height: 55px; }
+            .character-eyes { gap: 12px; padding-top: 15px; }
+            .eye { width: 12px; height: 12px; }
+            .pupil { width: 6px; height: 6px; }
+            .character-smile { width: 20px; height: 10px; }
+            .character-hair { width: 60px; height: 25px; top: -8px; }
+            .character-hair::after { width: 20px; height: 20px; top: -12px; }
+            .character-mask { width: 40px; height: 18px; top: 12px; }
+            .character-body-shape { width: 50px; height: 50px; margin-top: -8px; }
+            .character-chest { width: 25px; height: 25px; }
+            .character-logo { font-size: 1rem; }
+            .character-cape { width: 20px; height: 55px; right: -15px; top: 5px; }
+            .speech-bubble { top: -80px; left: 60px; padding: 10px 15px; min-width: 150px; }
+            .bubble-text { font-size: 0.75rem; }
+            .bubble-text.gold { font-size: 0.9rem; }
+            .bubble-text.small { font-size: 0.6rem; }
         }
         @media (max-width: 480px) {
             .hero { padding: 120px 0 40px; }
@@ -225,6 +275,23 @@
             .product-name { font-size: 0.85rem; }
             .footer-grid { grid-template-columns: 1fr; }
             .order-form .payment-methods { grid-template-columns: 1fr; }
+            .speech-bubble { top: -70px; left: 40px; padding: 8px 12px; min-width: 120px; }
+            .bubble-text { font-size: 0.65rem; }
+            .bubble-text.gold { font-size: 0.8rem; }
+            .bubble-text.small { font-size: 0.55rem; }
+            .character-body { width: 60px; height: 85px; }
+            .character-head { width: 40px; height: 40px; }
+            .character-eyes { gap: 8px; padding-top: 10px; }
+            .eye { width: 8px; height: 8px; }
+            .pupil { width: 4px; height: 4px; }
+            .character-hair { width: 45px; height: 20px; top: -6px; }
+            .character-hair::after { width: 15px; height: 15px; top: -10px; }
+            .character-mask { width: 30px; height: 12px; top: 10px; }
+            .character-smile { width: 15px; height: 8px; }
+            .character-body-shape { width: 38px; height: 38px; margin-top: -5px; }
+            .character-chest { width: 18px; height: 18px; }
+            .character-logo { font-size: 0.7rem; }
+            .character-cape { width: 15px; height: 40px; right: -10px; top: 0px; }
         }
     </style>
 </head>
@@ -257,6 +324,40 @@
     <section class="hero">
         <div class="hero-content">
             <img src="images/logo.png" alt="Egy Dent" class="hero-logo" onerror="this.style.display='none'" />
+            
+            <!-- ===== CHARACTER ===== -->
+            <div class="character-wrapper">
+                <div class="character">
+                    <div class="character-body">
+                        <div class="character-head">
+                            <div class="character-face">
+                                <div class="character-eyes">
+                                    <div class="eye left"><div class="pupil"></div></div>
+                                    <div class="eye right"><div class="pupil"></div></div>
+                                </div>
+                                <div class="character-smile"></div>
+                            </div>
+                            <div class="character-hair"></div>
+                            <div class="character-mask"></div>
+                        </div>
+                        <div class="character-body-shape">
+                            <div class="character-chest">
+                                <div class="character-logo">🦷</div>
+                            </div>
+                        </div>
+                        <div class="character-cape"></div>
+                    </div>
+                    <div class="speech-bubble">
+                        <div class="bubble-content">
+                            <span class="bubble-text">🎉 أهلاً بكم في</span>
+                            <span class="bubble-text gold">Egy Dent 🦷</span>
+                            <span class="bubble-text small">جميع مستلزمات طب الأسنان</span>
+                        </div>
+                        <div class="bubble-tail"></div>
+                    </div>
+                </div>
+            </div>
+            
             <h1>🦷 Egy Dent</h1>
             <div class="sub-title">جميع مستلزمات طب الأسنان في مكان واحد</div>
             <p>أفضل المنتجات بأفضل الأسعار في مصر</p>
@@ -553,7 +654,6 @@ let allProducts = [];
 let editingProductId = null;
 let cartData = {};
 
-// ===== HELPERS =====
 function convertImageToBase64(file) {
     return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -600,7 +700,6 @@ function createProductCard(product) {
     </div>`;
 }
 
-// ===== CART =====
 function getCart() {
     const sessionId = getSessionId();
     const cartRef = ref(database, `cart/${sessionId}`);
@@ -686,7 +785,6 @@ function updateCartDisplay() {
     container.innerHTML = html;
 }
 
-// ===== CART CONTROLS (global) =====
 window.updateCartQty = function(productId, delta) {
     if (cartData[productId]) {
         cartData[productId] += delta;
@@ -707,11 +805,9 @@ window.removeFromCart = function(productId) {
     showNotification('🗑️ تم حذف المنتج من العربة');
 };
 
-// ===== ORDER =====
 window.openOrder = function(productId) {
     const product = allProducts.find(p => p.id === productId);
     if (!product) return;
-    // Save single product to order
     const orderItems = {};
     orderItems[productId] = 1;
     localStorage.setItem('orderItems', JSON.stringify(orderItems));
@@ -725,7 +821,6 @@ window.openOrderFromCart = function() {
         alert('عربتك فارغة');
         return;
     }
-    // Save all cart items to order
     localStorage.setItem('orderItems', JSON.stringify(cartData));
     showPage('order');
     displayOrderSummary();
@@ -782,7 +877,6 @@ window.submitOrder = function() {
     const orderItems = JSON.parse(orderItemsStr);
     const keys = Object.keys(orderItems);
     
-    // Build products list for WhatsApp
     let productsList = '';
     let total = 0;
     keys.forEach(id => {
@@ -812,7 +906,6 @@ window.submitOrder = function() {
     window.open(whatsappUrl, '_blank');
     showNotification('✅ تم إرسال الطلب عبر واتساب');
     
-    // Clear cart after order
     cartData = {};
     saveCart();
     localStorage.removeItem('orderItems');
@@ -824,7 +917,6 @@ window.selectPayment = function(label) {
     label.querySelector('input[type="radio"]').checked = true;
 };
 
-// ===== LOAD PRODUCTS =====
 function loadProducts() {
     const productsRef = ref(database, 'products');
     onValue(productsRef, (snapshot) => {
@@ -893,7 +985,6 @@ function updateAdminList() {
     container.innerHTML = html;
 }
 
-// ===== GLOBAL =====
 window.showPage = function(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + page).classList.add('active');
