@@ -944,13 +944,38 @@ function updateAdminList() {
 }
 
 window.showPage = function(page) {
+    // إخفاء كل الصفحات
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-    document.getElementById('page-' + page).classList.add('active');
+    
+    // إظهار الصفحة المطلوبة
+    const targetPage = document.getElementById('page-' + page);
+    if (targetPage) {
+        targetPage.classList.add('active');
+    } else {
+        // لو الصفحة مش موجودة، روح للرئيسية
+        document.getElementById('page-home').classList.add('active');
+        page = 'home';
+    }
+    
+    // تحديث الأزرار النشطة
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navMap = { home: 'navHome', products: 'navProducts', about: 'navAbout', contact: 'navContact', shipping: 'navShipping', admin: 'navAdmin', cart: 'navCart', order: 'navProducts' };
+    const navMap = { 
+        home: 'navHome', 
+        products: 'navProducts', 
+        about: 'navAbout', 
+        contact: 'navContact', 
+        shipping: 'navShipping', 
+        admin: 'navAdmin', 
+        cart: 'navCart', 
+        order: 'navProducts' 
+    };
     const navItem = document.getElementById(navMap[page]);
     if (navItem) navItem.classList.add('active');
+    
+    // التمرير لأعلى الصفحة
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // تحديث المحتوى حسب الصفحة
     if (page === 'order') { displayOrderSummary(); }
     if (page === 'cart') { updateCartDisplay(); }
 };
