@@ -6,6 +6,7 @@
     <title>Egy Dent - مستلزمات طب الأسنان</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
+        /* ===== نفس التنسيقات اللي قبل كده ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root { --primary: #1a1a1a; --gold: #D4AF37; --silver: #C0C0C0; --white: #FFFFFF; --light-gray: #f5f5f5; --shadow: 0 4px 15px rgba(0,0,0,0.1); --transition: all 0.3s ease; }
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--white); color: var(--primary); line-height: 1.6; }
@@ -16,7 +17,7 @@
         .logo-img { height: 40px; width: auto; }
         .logo-text { color: var(--gold); font-size: 1.5rem; font-weight: bold; }
         .nav-links { display: flex; align-items: center; gap: 25px; }
-        .nav-links a { color: var(--white); text-decoration: none; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; gap: 8px; }
+        .nav-links a { color: var(--white); text-decoration: none; font-size: 1rem; transition: var(--transition); display: flex; align-items: center; gap: 8px; cursor: pointer; }
         .nav-links a:hover, .nav-links a.active { color: var(--gold); }
         .cart-link { position: relative; }
         .cart-badge { background: var(--gold); color: var(--primary); border-radius: 50%; padding: 2px 8px; font-size: 0.7rem; font-weight: bold; position: absolute; top: -8px; right: -8px; }
@@ -28,8 +29,10 @@
         .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
         .btn-primary { background: var(--gold); color: var(--primary); padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-block; border: none; cursor: pointer; }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4); }
-        .btn-whatsapp { background: #25D366; color: white; padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; }
+        .btn-whatsapp { background: #25D366; color: white; padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
         .btn-whatsapp:hover { transform: translateY(-3px); box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4); }
+        .btn-secondary { background: #333; color: white; padding: 12px 35px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: var(--transition); display: inline-block; border: none; cursor: pointer; }
+        .btn-secondary:hover { transform: translateY(-3px); background: #555; }
         .section-title { font-size: 2rem; text-align: center; margin-bottom: 40px; color: var(--primary); position: relative; }
         .section-title::after { content: ''; display: block; width: 60px; height: 3px; background: var(--gold); margin: 10px auto 0; }
         .categories, .featured-products { padding: 60px 0; }
@@ -56,7 +59,7 @@
         .footer { background: var(--primary); color: var(--white); padding: 60px 0 20px; margin-top: 40px; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
         .footer-col h3 { color: var(--gold); margin-bottom: 15px; font-size: 1.1rem; }
-        .footer-col p, .footer-col a { color: #ccc; font-size: 0.9rem; line-height: 2; text-decoration: none; display: block; }
+        .footer-col p, .footer-col a { color: #ccc; font-size: 0.9rem; line-height: 2; text-decoration: none; display: block; cursor: pointer; }
         .footer-col a:hover { color: var(--gold); }
         .footer-social { display: flex; gap: 15px; margin-top: 15px; }
         .footer-social a { color: var(--white); font-size: 1.2rem; transition: var(--transition); }
@@ -64,6 +67,8 @@
         .footer-bottom { text-align: center; padding-top: 20px; border-top: 1px solid #333; color: #666; font-size: 0.8rem; }
         .notification { position: fixed; bottom: 20px; right: 20px; background: #25D366; color: white; padding: 15px 25px; border-radius: 10px; z-index: 9999; font-weight: bold; box-shadow: 0 5px 20px rgba(0,0,0,0.2); animation: slideUp 0.3s ease; }
         @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        /* ===== Admin ===== */
         .admin-container { padding: 100px 20px 60px; max-width: 1200px; margin: 0 auto; }
         .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px; }
         .admin-header h1 { color: var(--gold); }
@@ -101,10 +106,132 @@
         .btn-save { background: var(--gold); color: var(--primary); }
         .btn-delete-image { background: #e74c3c; color: white; }
         .btn-cancel { background: #999; color: white; }
-        @media (max-width: 768px) { .nav-toggle { display: block; } .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--primary); padding: 20px; gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); } .nav-links.active { display: flex; } .hero h1 { font-size: 1.8rem; } .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; } .product-image { height: 150px; } .footer-grid { grid-template-columns: 1fr 1fr; } .admin-form .form-row { grid-template-columns: 1fr; } .admin-table { font-size: 0.75rem; min-width: 400px; } }
-        @media (max-width: 480px) { .hero { padding: 100px 0 60px; } .hero h1 { font-size: 1.4rem; } .products-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; } .product-image { height: 120px; } .product-info { padding: 10px; } .product-name { font-size: 0.85rem; } .footer-grid { grid-template-columns: 1fr; } }
+        
+        /* ===== Order Form ===== */
+        .order-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .order-form h2 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .order-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+        .order-form input, .order-form select, .order-form textarea {
+            width: 100%;
+            padding: 10px 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+        .order-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .order-form .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .order-form .payment-methods label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .order-form .payment-methods label:hover {
+            border-color: var(--gold);
+        }
+        .order-form .payment-methods input[type="radio"] {
+            width: auto;
+            margin: 0;
+        }
+        .order-form .payment-methods .selected {
+            border-color: var(--gold);
+            background: #fdf8ed;
+        }
+        .order-form .btn-submit-order {
+            background: #25D366;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+        }
+        .order-form .btn-submit-order:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+        }
+        .order-summary {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .order-summary h3 {
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+        .order-summary .item {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .order-summary .total {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 10px;
+            text-align: left;
+        }
+
         .page { display: none; }
         .page.active { display: block; }
+
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--primary); padding: 20px; gap: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+            .nav-links.active { display: flex; }
+            .hero h1 { font-size: 1.8rem; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+            .product-image { height: 150px; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+            .admin-form .form-row { grid-template-columns: 1fr; }
+            .admin-table { font-size: 0.75rem; min-width: 400px; }
+            .order-form .payment-methods { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 480px) {
+            .hero { padding: 100px 0 60px; }
+            .hero h1 { font-size: 1.4rem; }
+            .products-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+            .product-image { height: 120px; }
+            .product-info { padding: 10px; }
+            .product-name { font-size: 0.85rem; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .order-form .payment-methods { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -235,6 +362,66 @@
     </section>
 </div>
 
+<!-- ===== ORDER PAGE (NEW) ===== -->
+<div class="page" id="page-order">
+    <section style="padding:120px 20px 60px;max-width:600px;margin:0 auto;">
+        <h1 class="section-title">📝 تأكيد الطلب</h1>
+        <div class="order-form" id="orderForm">
+            <h2>بيانات العميل</h2>
+            
+            <div class="order-summary" id="orderSummary">
+                <h3>🛒 ملخص الطلب</h3>
+                <div id="orderItemsList"></div>
+                <div class="total" id="orderTotal">الإجمالي: 0 جنيه</div>
+            </div>
+
+            <label>👤 الاسم بالكامل *</label>
+            <input type="text" id="customerName" placeholder="مثال: أحمد محمد" required />
+
+            <label>🏥 عنوان العيادة *</label>
+            <input type="text" id="customerAddress" placeholder="مثال: مدينة نصر - شارع الطيران" required />
+
+            <label>📱 رقم التليفون *</label>
+            <input type="tel" id="customerPhone" placeholder="مثال: 01123456789" required />
+
+            <label>📝 ملاحظات إضافية</label>
+            <textarea id="customerNotes" placeholder="أي ملاحظات أو طلبات خاصة..."></textarea>
+
+            <label style="margin-top:10px;">💳 طريقة الدفع *</label>
+            <div class="payment-methods" id="paymentMethods">
+                <label onclick="selectPayment(this)">
+                    <input type="radio" name="payment" value="فودافون كاش" checked />
+                    <i class="fas fa-mobile-alt" style="color:#e60000;"></i> فودافون كاش
+                </label>
+                <label onclick="selectPayment(this)">
+                    <input type="radio" name="payment" value="إنستا باي" />
+                    <i class="fas fa-mobile-alt" style="color:#0055a4;"></i> إنستا باي
+                </label>
+                <label onclick="selectPayment(this)">
+                    <input type="radio" name="payment" value="أورنج كاش" />
+                    <i class="fas fa-mobile-alt" style="color:#ff6600;"></i> أورنج كاش
+                </label>
+                <label onclick="selectPayment(this)">
+                    <input type="radio" name="payment" value="اتصالات كاش" />
+                    <i class="fas fa-mobile-alt" style="color:#660099;"></i> اتصالات كاش
+                </label>
+                <label onclick="selectPayment(this)">
+                    <input type="radio" name="payment" value="فيزا / ماستركارد" />
+                    <i class="fas fa-credit-card" style="color:#1a1a8a;"></i> فيزا / ماستركارد
+                </label>
+                <label onclick="selectPayment(this)">
+                    <input type="radio" name="payment" value="الدفع عند الاستلام" />
+                    <i class="fas fa-hand-holding-usd" style="color:#2e7d32;"></i> الدفع عند الاستلام
+                </label>
+            </div>
+
+            <button class="btn-submit-order" onclick="submitOrder()">
+                <i class="fab fa-whatsapp"></i> إرسال الطلب عبر واتساب
+            </button>
+        </div>
+    </section>
+</div>
+
 <!-- ===== ADMIN PAGE ===== -->
 <div class="page" id="page-admin">
     <div class="admin-container">
@@ -342,6 +529,7 @@ const database = getDatabase(app);
 
 let allProducts = [];
 let editingProductId = null;
+let cartItems = [];
 
 // ===== FUNCTIONS =====
 function convertImageToBase64(file) {
@@ -383,12 +571,96 @@ function createProductCard(product) {
             <p class="product-description">${product.description || ''}</p>
             <div class="product-price">${priceDisplay}</div>
             <div class="product-actions">
-                <a href="https://wa.me/201151605515?text=أريد%20طلب%20${encodeURIComponent(product.name)}" class="btn-whatsapp-small" target="_blank"><i class="fab fa-whatsapp"></i> اطلب</a>
+                <button class="btn-whatsapp-small" onclick="openOrder('${product.id}')"><i class="fab fa-whatsapp"></i> اطلب</button>
                 <button class="btn-cart" onclick="window.addToCart('${product.id}')"><i class="fas fa-cart-plus"></i></button>
             </div>
         </div>
     </div>`;
 }
+
+// ===== OPEN ORDER FORM =====
+window.openOrder = function(productId) {
+    const product = allProducts.find(p => p.id === productId);
+    if (!product) return;
+    
+    // Save product to order
+    localStorage.setItem('orderProduct', JSON.stringify(product));
+    
+    // Show order page
+    showPage('order');
+    displayOrderSummary();
+};
+
+function displayOrderSummary() {
+    const productData = localStorage.getItem('orderProduct');
+    if (!productData) {
+        document.getElementById('orderItemsList').innerHTML = '<p>لا توجد منتجات</p>';
+        document.getElementById('orderTotal').textContent = 'الإجمالي: 0 جنيه';
+        return;
+    }
+    
+    const product = JSON.parse(productData);
+    const price = parseFloat(product.price) || 0;
+    
+    document.getElementById('orderItemsList').innerHTML = `
+        <div class="item">
+            <span>${product.name}</span>
+            <span>${price} جنيه</span>
+        </div>
+    `;
+    document.getElementById('orderTotal').textContent = `الإجمالي: ${price} جنيه`;
+}
+
+// ===== SUBMIT ORDER =====
+window.submitOrder = function() {
+    const name = document.getElementById('customerName').value.trim();
+    const address = document.getElementById('customerAddress').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const notes = document.getElementById('customerNotes').value.trim();
+    const payment = document.querySelector('input[name="payment"]:checked');
+    
+    if (!name) { alert('من فضلك أدخل الاسم'); return; }
+    if (!address) { alert('من فضلك أدخل عنوان العيادة'); return; }
+    if (!phone) { alert('من فضلك أدخل رقم التليفون'); return; }
+    if (!payment) { alert('من فضلك اختر طريقة الدفع'); return; }
+    
+    const productData = localStorage.getItem('orderProduct');
+    if (!productData) { alert('لا توجد منتجات للطلب'); return; }
+    
+    const product = JSON.parse(productData);
+    const price = parseFloat(product.price) || 0;
+    
+    // Build WhatsApp message
+    const message = `🦷 *طلب شراء من Egy Dent*\n\n` +
+        `👤 *الاسم:* ${name}\n` +
+        `🏥 *العيادة:* ${address}\n` +
+        `📱 *التليفون:* ${phone}\n` +
+        `📦 *المنتج:* ${product.name}\n` +
+        `💰 *السعر:* ${price} جنيه\n` +
+        `💳 *طريقة الدفع:* ${payment.value}\n` +
+        (notes ? `📝 *ملاحظات:* ${notes}\n` : '') +
+        `\n--------------------\n` +
+        `تم إرسال الطلب من موقع Egy Dent`;
+    
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/201151605515?text=${encodedMessage}`;
+    
+    // Open WhatsApp
+    window.open(whatsappUrl, '_blank');
+    
+    // Show notification
+    showNotification('✅ تم إرسال الطلب عبر واتساب');
+    
+    // Clear order
+    localStorage.removeItem('orderProduct');
+};
+
+// ===== SELECT PAYMENT =====
+window.selectPayment = function(label) {
+    document.querySelectorAll('.payment-methods label').forEach(l => l.classList.remove('selected'));
+    label.classList.add('selected');
+    label.querySelector('input[type="radio"]').checked = true;
+};
 
 // ===== LOAD PRODUCTS =====
 function loadProducts() {
@@ -474,10 +746,15 @@ window.showPage = function(page) {
     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
     document.getElementById('page-' + page).classList.add('active');
     document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
-    const navMap = { home: 'navHome', products: 'navProducts', about: 'navAbout', contact: 'navContact', shipping: 'navShipping', admin: 'navAdmin', cart: 'navCart' };
+    const navMap = { home: 'navHome', products: 'navProducts', about: 'navAbout', contact: 'navContact', shipping: 'navShipping', admin: 'navAdmin', cart: 'navCart', order: 'navProducts' };
     const navItem = document.getElementById(navMap[page]);
     if (navItem) navItem.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    
+    // Refresh order summary if order page
+    if (page === 'order') {
+        displayOrderSummary();
+    }
 };
 
 window.filterByCategory = function(category) {
@@ -594,10 +871,7 @@ document.getElementById('editModal').addEventListener('click', function(e) {
     if (e.target === this) closeEditModal();
 });
 
-// ===== START =====
-loadProducts();
-
-// ===== CART PAGE =====
+// ===== CART PAGE OBSERVER =====
 const cartObserver = new MutationObserver(() => {
     if (document.getElementById('page-cart').classList.contains('active')) {
         const sessionId = getSessionId();
@@ -611,12 +885,14 @@ const cartObserver = new MutationObserver(() => {
             }
             let html = '<div style="padding:10px 0;">';
             let total = 0;
+            let productNames = [];
             Object.entries(data).forEach(([id, qty]) => {
                 const product = allProducts.find(p => p.id === id);
                 if (product) {
                     const price = parseFloat(product.price) || 0;
                     const subtotal = price * qty;
                     total += subtotal;
+                    productNames.push(`${product.name} × ${qty}`);
                     html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #eee;">
                         <div><strong>${product.name}</strong> × ${qty}</div>
                         <div>${subtotal} جنيه</div>
@@ -624,13 +900,36 @@ const cartObserver = new MutationObserver(() => {
                 }
             });
             html += `<div style="text-align:left;padding:15px 0;font-size:1.2rem;font-weight:bold;">الإجمالي: ${total} جنيه</div>`;
-            html += `<a href="https://wa.me/201151605515?text=أريد%20طلب%20العربة" class="btn-whatsapp" target="_blank" style="display:inline-block;"><i class="fab fa-whatsapp"></i> إتمام الطلب عبر واتساب</a>`;
+            html += `<button class="btn-whatsapp" onclick="openOrderFromCart()" style="display:inline-block;width:100%;justify-content:center;"><i class="fab fa-whatsapp"></i> إتمام الطلب</button>`;
             html += '</div>';
             container.innerHTML = html;
         });
     }
 });
 cartObserver.observe(document.getElementById('page-cart'), { attributes: true, attributeFilter: ['class'] });
+
+window.openOrderFromCart = function() {
+    const sessionId = getSessionId();
+    const cartRef = ref(database, `cart/${sessionId}`);
+    get(cartRef).then((snapshot) => {
+        const data = snapshot.val();
+        if (!data || Object.keys(data).length === 0) {
+            alert('عربتك فارغة');
+            return;
+        }
+        // Get first product from cart
+        const firstId = Object.keys(data)[0];
+        const product = allProducts.find(p => p.id === firstId);
+        if (product) {
+            localStorage.setItem('orderProduct', JSON.stringify(product));
+            showPage('order');
+            displayOrderSummary();
+        }
+    });
+};
+
+// ===== START =====
+loadProducts();
 
 console.log('🚀 Egy Dent is running!');
 </script>
