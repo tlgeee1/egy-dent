@@ -4,12 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Egy Dent - مستلزمات طب الأسنان</title>
-    <meta name="description" content="Egy Dent - جميع مستلزمات طب الأسنان في مصر بأفضل الأسعار. أدوات معملية، شمع، جبس، فرش، معجون، أدوات تقويم وأكثر. توصيل لجميع المحافظات." />
-    <meta property="og:title" content="Egy Dent - مستلزمات طب الأسنان" />
-    <meta property="og:description" content="جميع مستلزمات طب الأسنان في مصر بأفضل الأسعار مع توصيل سريع لجميع المحافظات." />
-    <meta property="og:image" content="images/logo.png" />
-    <meta property="og:type" content="website" />
-    <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -46,17 +40,10 @@
             padding: 0 20px;
         }
 
+        /* ===== ANIMATIONS ===== */
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
         }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -88,11 +75,8 @@
             0% { transform: translateY(0) scale(0); opacity: 1; }
             100% { transform: translateY(-200px) scale(1); opacity: 0; }
         }
-        @keyframes shimmerBorder {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
 
+        /* ===== PARTICLES ===== */
         .particles-container {
             position: fixed;
             top: 0;
@@ -125,6 +109,7 @@
         .particle:nth-child(11) { left: 45%; animation-delay: 0.3s; animation-duration: 8s; }
         .particle:nth-child(12) { left: 75%; animation-delay: 1.2s; animation-duration: 10s; width: 5px; height: 5px; }
 
+        /* ===== WAVES ===== */
         .waves-container {
             position: relative;
             width: 100%;
@@ -160,6 +145,7 @@
             opacity: 0.7;
         }
 
+        /* ===== NAVBAR ===== */
         .navbar {
             background: rgba(26, 26, 26, 0.95);
             backdrop-filter: blur(20px);
@@ -281,6 +267,7 @@
             transform: rotate(90deg);
         }
 
+        /* ===== HERO ===== */
         .hero {
             background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 25%, #16213e 50%, #0f3460 75%, var(--primary) 100%);
             background-size: 400% 400%;
@@ -344,14 +331,14 @@
             color: var(--silver);
             margin-bottom: 10px;
             opacity: 0;
-            animation: fadeInLeft 1s ease forwards 0.5s;
+            animation: fadeInUp 1s ease forwards 0.5s;
         }
         .hero p {
             font-size: 1.2rem;
             color: #aaa;
             margin-bottom: 30px;
             opacity: 0;
-            animation: fadeInRight 1s ease forwards 0.8s;
+            animation: fadeInUp 1s ease forwards 0.8s;
         }
         .hero-buttons {
             display: flex;
@@ -362,6 +349,69 @@
             animation: fadeInUp 1s ease forwards 1.1s;
         }
 
+        /* ===== SEARCH BAR ===== */
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 30px;
+            padding: 0 20px;
+        }
+        .search-box {
+            display: flex;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        .search-box:focus-within {
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
+        }
+        .search-box input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            color: var(--white);
+            font-size: 1rem;
+            font-family: 'Tajawal', sans-serif;
+            outline: none;
+        }
+        .search-box input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .search-box input:focus {
+            outline: none;
+        }
+        .search-box button {
+            background: linear-gradient(135deg, var(--gold), #9a7a2e);
+            color: var(--primary);
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: 'Tajawal', sans-serif;
+        }
+        .search-box button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(201, 168, 76, 0.3);
+        }
+        .search-results-count {
+            text-align: center;
+            color: var(--silver);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            display: none;
+        }
+        .search-results-count.active {
+            display: block;
+        }
+
+        /* ===== BUTTONS ===== */
         .btn-primary {
             background: linear-gradient(135deg, var(--gold), #9a7a2e, var(--gold));
             background-size: 200% auto;
@@ -456,6 +506,7 @@
             box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
         }
 
+        /* ===== SECTION TITLE ===== */
         .section-title {
             font-size: 2.2rem;
             text-align: center;
@@ -483,6 +534,7 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* ===== CATEGORIES ===== */
         .categories {
             padding: 60px 0;
             background: var(--light-gray);
@@ -556,6 +608,7 @@
             color: var(--gold);
         }
 
+        /* ===== PRODUCTS ===== */
         .featured-products {
             padding: 60px 0;
             position: relative;
@@ -593,14 +646,6 @@
         .product-card:hover::before {
             transform: scaleX(1);
         }
-        .product-card:nth-child(1) { animation-delay: 0.1s; }
-        .product-card:nth-child(2) { animation-delay: 0.15s; }
-        .product-card:nth-child(3) { animation-delay: 0.2s; }
-        .product-card:nth-child(4) { animation-delay: 0.25s; }
-        .product-card:nth-child(5) { animation-delay: 0.3s; }
-        .product-card:nth-child(6) { animation-delay: 0.35s; }
-        .product-card:nth-child(7) { animation-delay: 0.4s; }
-        .product-card:nth-child(8) { animation-delay: 0.45s; }
         .product-card:hover {
             transform: translateY(-10px) scale(1.01);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -744,6 +789,7 @@
             box-shadow: 0 5px 20px rgba(201, 168, 76, 0.4);
         }
 
+        /* ===== COUNTERS ===== */
         .counters {
             padding: 60px 0;
             background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 50%, var(--primary) 100%);
@@ -790,6 +836,7 @@
             margin-top: 5px;
         }
 
+        /* ===== OFFER SECTION ===== */
         .offer-section {
             padding: 60px 0;
             background: linear-gradient(135deg, #1a1a2e, #16213e);
@@ -853,6 +900,7 @@
             color: var(--silver);
         }
 
+        /* ===== TESTIMONIALS ===== */
         .testimonials {
             padding: 60px 0;
             background: var(--light-gray);
@@ -912,6 +960,7 @@
             color: var(--gold);
         }
 
+        /* ===== FOOTER ===== */
         .footer {
             background: var(--primary);
             color: var(--white);
@@ -980,6 +1029,7 @@
             font-size: 0.8rem;
         }
 
+        /* ===== NOTIFICATION ===== */
         .notification {
             position: fixed;
             bottom: 20px;
@@ -1019,6 +1069,7 @@
             margin-bottom: 0;
         }
 
+        /* ===== RESPONSIVE ===== */
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
             .nav-links {
@@ -1046,6 +1097,8 @@
             .countdown-item { padding: 15px 20px; min-width: 60px; }
             .countdown-number { font-size: 1.8rem; }
             .offer-content h2 { font-size: 1.8rem; }
+            .search-box { flex-direction: column; border-radius: 20px; background: rgba(255,255,255,0.05); }
+            .search-box button { border-radius: 50px; }
         }
         @media (max-width: 480px) {
             .hero { padding: 120px 0 40px; }
@@ -1124,6 +1177,16 @@
         <section class="featured-products">
             <div class="container">
                 <h2 class="section-title">⭐ <span class="highlight">منتجات مميزة</span></h2>
+                
+                <!-- ===== SEARCH BAR ===== -->
+                <div class="search-container">
+                    <div class="search-box">
+                        <input type="text" id="searchInput" placeholder="🔍 ابحث عن منتج..." onkeyup="searchProducts()" />
+                        <button onclick="searchProducts()"><i class="fas fa-search"></i> بحث</button>
+                    </div>
+                    <div class="search-results-count" id="searchResultsCount">تم العثور على <span id="searchCount">0</span> منتج</div>
+                </div>
+
                 <div class="products-grid" id="featuredProducts">
                     <div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i><p>جاري التحميل...</p></div>
                 </div>
@@ -1204,6 +1267,16 @@
                 <h1 class="section-title page-title" style="margin-bottom:0;">📦 جميع <span class="highlight">المنتجات</span></h1>
                 <button class="btn-back" onclick="showPage('home')"><i class="fas fa-arrow-right"></i> رجوع</button>
             </div>
+            
+            <!-- ===== SEARCH BAR ===== -->
+            <div class="search-container" style="max-width:600px;margin:0 auto 30px;padding:0;">
+                <div class="search-box" style="background:rgba(0,0,0,0.05);border-color:#ddd;">
+                    <input type="text" id="searchInputProducts" placeholder="🔍 ابحث عن منتج..." style="color:var(--primary);" onkeyup="searchProductsPage()" />
+                    <button onclick="searchProductsPage()"><i class="fas fa-search"></i> بحث</button>
+                </div>
+                <div class="search-results-count" id="searchResultsCountProducts">تم العثور على <span id="searchCountProducts">0</span> منتج</div>
+            </div>
+
             <div style="margin-bottom:30px;display:flex;gap:10px;flex-wrap:wrap;" id="filterButtons">
                 <button class="btn-primary" onclick="filterProducts('all')" style="padding:8px 20px;font-size:0.9rem;">الكل</button>
             </div>
@@ -1213,6 +1286,7 @@
         </section>
     </div>
 
+    <!-- ===== باقي الصفحات (about, contact, shipping, cart, order, admin) ===== -->
     <div class="page" id="page-about">
         <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
             <div class="page-header">
@@ -1357,6 +1431,18 @@
                     <button onclick="adminLogout()" style="background:#e74c3c;color:white;border:none;padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:bold;"><i class="fas fa-sign-out-alt"></i> خروج</button>
                 </div>
             </div>
+
+            <!-- ===== SEARCH IN ADMIN ===== -->
+            <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:30px;">
+                <h2 style="color:var(--gold);margin-bottom:15px;"><i class="fas fa-search"></i> بحث في المنتجات</h2>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <input type="text" id="adminSearchInput" placeholder="ابحث باسم المنتج..." style="flex:1;padding:12px 15px;border:2px solid #eee;border-radius:8px;font-size:1rem;min-width:200px;" onkeyup="adminSearchProducts()" />
+                    <button onclick="adminSearchProducts()" style="background:var(--gold);color:var(--primary);border:none;padding:12px 25px;border-radius:8px;cursor:pointer;font-weight:bold;"><i class="fas fa-search"></i> بحث</button>
+                    <button onclick="adminClearSearch()" style="background:#999;color:white;border:none;padding:12px 25px;border-radius:8px;cursor:pointer;font-weight:bold;"><i class="fas fa-times"></i> إلغاء</button>
+                </div>
+                <div id="adminSearchResults" style="margin-top:10px;color:#777;font-size:0.9rem;display:none;">تم العثور على <span id="adminSearchCount">0</span> منتج</div>
+            </div>
+
             <div id="addForm" style="background:white;padding:30px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:30px;border-top:4px solid var(--gold);">
                 <h2 style="color:var(--gold);margin-bottom:20px;"><i class="fas fa-plus-circle"></i> إضافة منتج جديد</h2>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;">
@@ -1379,7 +1465,7 @@
 
             <div id="bulkImportBox" style="background:white;padding:30px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:30px;border-top:4px solid var(--gold);">
                 <h2 style="color:var(--gold);margin-bottom:10px;"><i class="fas fa-file-import"></i> استيراد أسماء بالجملة</h2>
-                <p style="color:#777;font-size:0.9rem;margin-bottom:15px;">الصق أسماء المنتجات هنا، اسم في كل سطر. هيتم إنشاء منتج لكل سطر بالاسم بس (السعر والصورة فاضيين وتقدر تظبطهم بعدين من جدول "جميع المنتجات" تحت).</p>
+                <p style="color:#777;font-size:0.9rem;margin-bottom:15px;">الصق أسماء المنتجات هنا، اسم في كل سطر. هيتم إنشاء منتج لكل سطر بالاسم بس (السعر والصورة فاضيين وتقدر تظبطهم بعدين).</p>
                 <textarea id="bulkNamesInput" placeholder="مصري wax sheet&#10;spatula يد بلاستيك&#10;..." style="width:100%;padding:12px 15px;margin-bottom:15px;border:2px solid #eee;border-radius:8px;font-size:0.95rem;min-height:160px;resize:vertical;direction:rtl;"></textarea>
                 <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
                     <button class="btn-submit" onclick="bulkImportProducts()" style="background:linear-gradient(135deg,var(--gold),#9a7a2e);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;"><i class="fas fa-upload"></i> استيراد الأسماء</button>
@@ -1406,10 +1492,6 @@
 
             <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow);overflow-x:auto;">
                 <h2 style="color:var(--gold);margin-bottom:20px;"><i class="fas fa-list"></i> جميع المنتجات</h2>
-                <div style="margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;">
-                    <input type="text" id="searchInput" placeholder="بحث..." style="flex:1;padding:12px 15px;border:2px solid #eee;border-radius:8px;font-size:1rem;min-width:200px;" onkeyup="searchProducts()" />
-                    <button onclick="searchProducts()" style="background:var(--gold);color:var(--primary);border:none;padding:12px 25px;border-radius:8px;cursor:pointer;font-weight:bold;transition:all 0.3s ease;"><i class="fas fa-search"></i> بحث</button>
-                </div>
                 <div id="productsList">
                     <div style="text-align:center;padding:40px;color:#999;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;display:block;margin-bottom:10px;"></i> جاري التحميل...</div>
                 </div>
@@ -1417,6 +1499,7 @@
         </div>
     </div>
 
+    <!-- ===== MODAL ===== -->
     <div class="modal-overlay" id="editModal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);backdrop-filter:blur(5px);z-index:2000;justify-content:center;align-items:center;padding:20px;">
         <div style="background:white;padding:30px;border-radius:12px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,0.3);border-top:4px solid var(--gold);">
             <h2 style="color:var(--gold);margin-bottom:20px;"><i class="fas fa-edit"></i> تعديل المنتج</h2>
@@ -1888,6 +1971,103 @@
             container.innerHTML = html;
         }
 
+        // ===== SEARCH FUNCTIONS =====
+        window.searchProducts = function() {
+            const input = document.getElementById('searchInput');
+            const query = input.value.toLowerCase().trim();
+            const container = document.getElementById('featuredProducts');
+            const countEl = document.getElementById('searchResultsCount');
+            const countNum = document.getElementById('searchCount');
+
+            if (!container) return;
+
+            let filtered;
+            if (query === '') {
+                filtered = allProducts.slice(0, 8);
+                countEl.classList.remove('active');
+            } else {
+                filtered = allProducts.filter(p => 
+                    p.name.toLowerCase().includes(query) || 
+                    (p.category && p.category.toLowerCase().includes(query))
+                );
+                countEl.classList.add('active');
+                countNum.textContent = filtered.length;
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;">
+                    <i class="fas fa-search" style="font-size:3rem;display:block;margin-bottom:10px;"></i>
+                    <p>لا توجد منتجات تطابق بحثك</p>
+                </div>`;
+            } else {
+                container.innerHTML = filtered.map(p => createProductCard(p)).join('');
+            }
+        };
+
+        window.searchProductsPage = function() {
+            const input = document.getElementById('searchInputProducts');
+            const query = input.value.toLowerCase().trim();
+            const container = document.getElementById('allProducts');
+            const countEl = document.getElementById('searchResultsCountProducts');
+            const countNum = document.getElementById('searchCountProducts');
+
+            if (!container) return;
+
+            let filtered;
+            if (query === '') {
+                filtered = allProducts;
+                countEl.classList.remove('active');
+            } else {
+                filtered = allProducts.filter(p => 
+                    p.name.toLowerCase().includes(query) || 
+                    (p.category && p.category.toLowerCase().includes(query))
+                );
+                countEl.classList.add('active');
+                countNum.textContent = filtered.length;
+            }
+
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;">
+                    <i class="fas fa-search" style="font-size:3rem;display:block;margin-bottom:10px;"></i>
+                    <p>لا توجد منتجات تطابق بحثك</p>
+                </div>`;
+            } else {
+                container.innerHTML = filtered.map(p => createProductCard(p)).join('');
+            }
+        };
+
+        window.adminSearchProducts = function() {
+            const query = document.getElementById('adminSearchInput').value.toLowerCase().trim();
+            const rows = document.querySelectorAll('#productsList tbody tr');
+            const countEl = document.getElementById('adminSearchResults');
+            const countNum = document.getElementById('adminSearchCount');
+            let found = 0;
+
+            rows.forEach(row => {
+                const name = row.querySelector('td:nth-child(2)')?.textContent?.toLowerCase() || '';
+                const match = query === '' || name.includes(query);
+                row.style.display = match ? '' : 'none';
+                if (match) found++;
+            });
+
+            if (query === '') {
+                countEl.classList.remove('active');
+            } else {
+                countEl.classList.add('active');
+                countNum.textContent = found;
+                countEl.style.display = 'block';
+            }
+        };
+
+        window.adminClearSearch = function() {
+            document.getElementById('adminSearchInput').value = '';
+            document.querySelectorAll('#productsList tbody tr').forEach(row => {
+                row.style.display = '';
+            });
+            document.getElementById('adminSearchResults').classList.remove('active');
+            document.getElementById('adminSearchResults').style.display = 'none';
+        };
+
         window.showPage = function(page) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const target = document.getElementById('page-' + page);
@@ -1901,6 +2081,15 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
             if (page === 'order') displayOrderSummary();
             if (page === 'cart') updateCartDisplay();
+            // Reset search when changing pages
+            if (page === 'home' || page === 'products') {
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput) searchInput.value = '';
+                const searchInputProducts = document.getElementById('searchInputProducts');
+                if (searchInputProducts) searchInputProducts.value = '';
+                document.getElementById('searchResultsCount')?.classList.remove('active');
+                document.getElementById('searchResultsCountProducts')?.classList.remove('active');
+            }
         };
 
         window.filterByCategory = function(category) {
@@ -1908,6 +2097,9 @@
             if (!container) return;
             const filtered = category === 'all' ? allProducts : allProducts.filter(p => p.category === category);
             container.innerHTML = filtered.map(p => createProductCard(p)).join('');
+            // Clear search
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResultsCount').classList.remove('active');
         };
 
         window.filterProducts = function(category) {
@@ -1915,6 +2107,9 @@
             if (!container) return;
             const filtered = category === 'all' ? allProducts : allProducts.filter(p => p.category === category);
             container.innerHTML = filtered.map(p => createProductCard(p)).join('');
+            // Clear search
+            document.getElementById('searchInputProducts').value = '';
+            document.getElementById('searchResultsCountProducts').classList.remove('active');
         };
 
         window.addProduct = async function() {
@@ -1966,7 +2161,6 @@
             document.getElementById('bulkNamesInput').value = '';
         };
 
-        // ===== JSON IMPORT =====
         window.importJSON = function() {
             const fileInput = document.getElementById('jsonImportFile');
             const statusEl = document.getElementById('jsonImportStatus');
@@ -2015,7 +2209,6 @@
             reader.readAsText(file);
         };
 
-        // ===== JSON EXPORT =====
         window.exportJSON = function() {
             if (allProducts.length === 0) {
                 alert('لا توجد منتجات للتصدير');
@@ -2103,14 +2296,6 @@
             document.getElementById('editModal').style.display = 'none';
             editingProductId = null;
             document.getElementById('editImageUpload').value = '';
-        };
-
-        window.searchProducts = function() {
-            const q = document.getElementById('searchInput').value.toLowerCase();
-            document.querySelectorAll('#productsList tbody tr').forEach(row => {
-                const name = row.querySelector('td:nth-child(2)')?.textContent?.toLowerCase() || '';
-                row.style.display = name.includes(q) ? '' : 'none';
-            });
         };
 
         document.getElementById('navToggle').addEventListener('click', () => {
