@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet" />
     <style>
         * {
             margin: 0;
@@ -21,17 +21,20 @@
             box-sizing: border-box;
         }
         :root {
-            --primary: #122E3A;
-            --gold: #0E7C86;
-            --silver: #8FA3AC;
+            --primary: #0a1628;
+            --gold: #c9a84c;
+            --gold-light: #e8cc7a;
+            --gold-pale: #fdf6e3;
+            --gold-dark: #9a7a2e;
+            --silver: #8a9ab8;
             --white: #FFFFFF;
-            --light-gray: #f4f7f7;
-            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --light-gray: #f4f6fb;
+            --shadow: 0 4px 15px rgba(10, 22, 40, 0.08);
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --glow: 0 0 30px rgba(14, 124, 134, 0.3);
+            --glow: 0 0 30px rgba(201, 168, 76, 0.3);
         }
         body {
-            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: var(--white);
             color: var(--primary);
             line-height: 1.6;
@@ -102,13 +105,13 @@
         }
         @keyframes glow {
             0% {
-                text-shadow: 0 0 10px rgba(14, 124, 134, 0.3);
+                text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
             }
             50% {
-                text-shadow: 0 0 40px rgba(14, 124, 134, 0.8), 0 0 80px rgba(14, 124, 134, 0.4);
+                text-shadow: 0 0 40px rgba(201, 168, 76, 0.8), 0 0 80px rgba(201, 168, 76, 0.4);
             }
             100% {
-                text-shadow: 0 0 10px rgba(14, 124, 134, 0.3);
+                text-shadow: 0 0 10px rgba(201, 168, 76, 0.3);
             }
         }
         @keyframes gradientMove {
@@ -354,7 +357,7 @@
         }
         .navbar:hover {
             background: rgba(26, 26, 26, 0.98);
-            box-shadow: 0 2px 50px rgba(14, 124, 134, 0.1);
+            box-shadow: 0 2px 50px rgba(201, 168, 76, 0.1);
         }
         .nav-container {
             max-width: 1200px;
@@ -384,7 +387,7 @@
             font-size: 1.6rem;
             font-weight: bold;
             letter-spacing: 1px;
-            background: linear-gradient(135deg, var(--gold), #4FC3BE, var(--gold));
+            background: linear-gradient(135deg, var(--gold), #e8cc7a, var(--gold));
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -421,7 +424,7 @@
             right: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--gold), #4FC3BE);
+            background: linear-gradient(90deg, var(--gold), #e8cc7a);
             transition: var(--transition);
         }
         .nav-links a:hover::after,
@@ -431,13 +434,13 @@
         .nav-links a:hover,
         .nav-links a.active {
             color: var(--gold);
-            text-shadow: 0 0 20px rgba(14, 124, 134, 0.3);
+            text-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
         }
         .cart-link {
             position: relative;
         }
         .cart-badge {
-            background: linear-gradient(135deg, var(--gold), #4FC3BE);
+            background: linear-gradient(135deg, var(--gold), #e8cc7a);
             color: var(--primary);
             border-radius: 50%;
             padding: 2px 8px;
@@ -447,7 +450,7 @@
             top: -8px;
             right: -8px;
             animation: pulse 2s infinite;
-            box-shadow: 0 0 20px rgba(14, 124, 134, 0.5);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.5);
         }
         .nav-toggle {
             display: none;
@@ -480,7 +483,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(14, 124, 134, 0.08) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(201, 168, 76, 0.08) 0%, transparent 50%);
             animation: float 10s ease-in-out infinite;
         }
         .hero::after {
@@ -501,20 +504,20 @@
             max-height: 120px;
             margin-bottom: 20px;
             border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(14, 124, 134, 0.3);
+            box-shadow: 0 10px 40px rgba(201, 168, 76, 0.3);
             transition: var(--transition);
             animation: float 4s ease-in-out infinite;
         }
         .hero-logo:hover {
             transform: scale(1.05) rotate(-2deg) scaleX(-1);
-            box-shadow: 0 20px 60px rgba(14, 124, 134, 0.5);
+            box-shadow: 0 20px 60px rgba(201, 168, 76, 0.5);
         }
         .hero h1 {
             font-size: 3rem;
             color: var(--gold);
             margin-bottom: 10px;
             animation: glow 3s ease-in-out infinite;
-            background: linear-gradient(135deg, var(--gold), #4FC3BE, var(--gold));
+            background: linear-gradient(135deg, var(--gold), #e8cc7a, var(--gold));
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -568,11 +571,11 @@
             transform: scale(1.05) rotate(-3deg);
         }
         .character-body img {
-            filter: drop-shadow(0 10px 30px rgba(14, 124, 134, 0.4));
+            filter: drop-shadow(0 10px 30px rgba(201, 168, 76, 0.4));
             transition: var(--transition);
         }
         .character-body img:hover {
-            filter: drop-shadow(0 20px 60px rgba(14, 124, 134, 0.6));
+            filter: drop-shadow(0 20px 60px rgba(201, 168, 76, 0.6));
         }
  
         /* ===== SPEECH BUBBLE ===== */
@@ -598,7 +601,7 @@
             right: -3px;
             bottom: -3px;
             border-radius: 22px;
-            background: linear-gradient(90deg, var(--gold), #4FC3BE, var(--gold));
+            background: linear-gradient(90deg, var(--gold), #e8cc7a, var(--gold));
             background-size: 200% auto;
             z-index: -1;
             animation: shimmerBorder 3s linear infinite;
@@ -653,7 +656,7 @@
  
         /* ===== BUTTONS ===== */
         .btn-primary {
-            background: linear-gradient(135deg, var(--gold), #0B5F66, var(--gold));
+            background: linear-gradient(135deg, var(--gold), #9a7a2e, var(--gold));
             background-size: 200% auto;
             color: var(--primary);
             padding: 14px 40px;
@@ -664,7 +667,7 @@
             display: inline-block;
             border: none;
             cursor: pointer;
-            box-shadow: 0 5px 25px rgba(14, 124, 134, 0.3);
+            box-shadow: 0 5px 25px rgba(201, 168, 76, 0.3);
             position: relative;
             overflow: hidden;
         }
@@ -684,7 +687,7 @@
         }
         .btn-primary:hover {
             transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 10px 40px rgba(14, 124, 134, 0.5);
+            box-shadow: 0 10px 40px rgba(201, 168, 76, 0.5);
             background-position: 100% center;
         }
         .btn-whatsapp {
@@ -743,7 +746,7 @@
             background: rgba(255, 255, 255, 0.2);
             transform: translateX(-5px);
             border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(14, 124, 134, 0.2);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
         }
  
         /* ===== SECTION TITLE ===== */
@@ -761,7 +764,7 @@
             display: block;
             width: 80px;
             height: 4px;
-            background: linear-gradient(90deg, var(--gold), #4FC3BE, var(--gold));
+            background: linear-gradient(90deg, var(--gold), #e8cc7a, var(--gold));
             background-size: 200% auto;
             margin: 10px auto 0;
             border-radius: 2px;
@@ -769,7 +772,7 @@
         }
         .section-title .highlight {
             color: var(--gold);
-            background: linear-gradient(135deg, var(--gold), #4FC3BE);
+            background: linear-gradient(135deg, var(--gold), #e8cc7a);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -790,7 +793,7 @@
             background: var(--white);
             padding: 25px 15px;
             text-align: center;
-            border-radius: 6px;
+            border-radius: 16px;
             box-shadow: var(--shadow);
             cursor: pointer;
             transition: var(--transition);
@@ -842,7 +845,7 @@
         .category-card:hover {
             transform: translateY(-8px) scale(1.02);
             border-color: var(--gold);
-            box-shadow: 0 15px 40px rgba(14, 124, 134, 0.3);
+            box-shadow: 0 15px 40px rgba(201, 168, 76, 0.3);
         }
         .category-card i {
             font-size: 2.5rem;
@@ -853,7 +856,7 @@
         }
         .category-card:hover i {
             transform: scale(1.2) rotate(-10deg);
-            color: #4FC3BE;
+            color: #e8cc7a;
         }
         .category-card span {
             display: block;
@@ -877,7 +880,7 @@
         }
         .product-card {
             background: var(--white);
-            border-radius: 6px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
@@ -893,7 +896,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, var(--gold), #4FC3BE, var(--gold));
+            background: linear-gradient(90deg, var(--gold), #e8cc7a, var(--gold));
             background-size: 200% auto;
             animation: shimmer 3s linear infinite;
             transform: scaleX(0);
@@ -965,14 +968,19 @@
             margin-bottom: 5px;
         }
         .product-price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--primary);
+            font-size: 1.15rem;
+            font-weight: 900;
+            color: var(--gold-dark);
             margin: 10px 0;
             transition: var(--transition);
+            background: var(--gold-pale);
+            border: 1px solid rgba(201, 168, 76, 0.25);
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: inline-block;
         }
         .product-card:hover .product-price {
-            color: var(--gold);
+            color: var(--gold-dark);
         }
         .product-price .currency {
             color: var(--gold);
@@ -1029,7 +1037,7 @@
             box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
         }
         .btn-cart {
-            background: linear-gradient(135deg, var(--gold), #0B5F66);
+            background: linear-gradient(135deg, var(--gold), #9a7a2e);
             color: var(--primary);
             padding: 8px 15px;
             border: none;
@@ -1061,7 +1069,7 @@
         }
         .btn-cart:hover {
             transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(14, 124, 134, 0.4);
+            box-shadow: 0 5px 20px rgba(201, 168, 76, 0.4);
         }
  
         /* ===== COUNTERS ===== */
@@ -1105,7 +1113,7 @@
         .counter-item:hover {
             transform: translateY(-5px);
             background: rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 40px rgba(14, 124, 134, 0.1);
+            box-shadow: 0 10px 40px rgba(201, 168, 76, 0.1);
         }
         .counter-number {
             font-size: 3rem;
@@ -1134,7 +1142,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 50%, rgba(14, 124, 134, 0.05) 0%, transparent 50%);
+            background: radial-gradient(circle at 30% 50%, rgba(201, 168, 76, 0.05) 0%, transparent 50%);
             animation: float 10s ease-in-out infinite;
         }
         .offer-content {
@@ -1163,14 +1171,14 @@
             backdrop-filter: blur(10px);
             padding: 20px 30px;
             border-radius: 12px;
-            border: 1px solid rgba(14, 124, 134, 0.2);
+            border: 1px solid rgba(201, 168, 76, 0.2);
             min-width: 80px;
             transition: var(--transition);
         }
         .countdown-item:hover {
             transform: scale(1.05);
             border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(14, 124, 134, 0.1);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.1);
         }
         .countdown-number {
             font-size: 2.5rem;
@@ -1216,7 +1224,7 @@
         }
         .testimonial-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(14, 124, 134, 0.2);
+            box-shadow: 0 10px 30px rgba(201, 168, 76, 0.2);
         }
         .testimonial-text {
             font-size: 1rem;
@@ -1233,7 +1241,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--gold), #4FC3BE);
+            background: linear-gradient(135deg, var(--gold), #e8cc7a);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1279,7 +1287,7 @@
             right: 0;
             width: 30px;
             height: 2px;
-            background: linear-gradient(90deg, var(--gold), #4FC3BE);
+            background: linear-gradient(90deg, var(--gold), #e8cc7a);
         }
         .footer-col p,
         .footer-col a {
@@ -1822,7 +1830,7 @@
                 <input type="email" id="adminEmail" placeholder="البريد الإلكتروني" style="width:100%;padding:12px 15px;margin-bottom:15px;border:2px solid #eee;border-radius:8px;font-size:1rem;" />
                 <input type="password" id="adminPassword" placeholder="كلمة المرور" style="width:100%;padding:12px 15px;margin-bottom:15px;border:2px solid #eee;border-radius:8px;font-size:1rem;" onkeyup="if(event.key==='Enter'){adminLogin()}" />
                 <div id="adminLoginError" style="display:none;color:#e74c3c;margin-bottom:15px;font-size:0.9rem;">بيانات الدخول غير صحيحة</div>
-                <button class="btn-submit" onclick="adminLogin()" style="width:100%;background:linear-gradient(135deg,var(--gold),#0B5F66);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;"><i class="fas fa-sign-in-alt"></i> دخول</button>
+                <button class="btn-submit" onclick="adminLogin()" style="width:100%;background:linear-gradient(135deg,var(--gold),#9a7a2e);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;"><i class="fas fa-sign-in-alt"></i> دخول</button>
             </div>
         </div>
         <div id="adminPanelBox" style="display:none;padding:100px 20px 60px;max-width:1200px;margin:0 auto;">
@@ -1850,7 +1858,7 @@
                 <input type="text" id="productPrice" placeholder="السعر (بالجنيه)" style="width:100%;padding:12px 15px;margin-bottom:15px;border:2px solid #eee;border-radius:8px;font-size:1rem;" />
                 <textarea id="productDescription" placeholder="وصف المنتج" style="width:100%;padding:12px 15px;margin-bottom:15px;border:2px solid #eee;border-radius:8px;font-size:1rem;min-height:80px;resize:vertical;"></textarea>
                 <input type="file" id="imageUpload" accept="image/*" style="padding:10px;width:100%;margin-bottom:15px;" />
-                <button class="btn-submit" onclick="addProduct()" style="background:linear-gradient(135deg,var(--gold),#0B5F66);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;transition:all 0.3s ease;"><i class="fas fa-save"></i> إضافة المنتج</button>
+                <button class="btn-submit" onclick="addProduct()" style="background:linear-gradient(135deg,var(--gold),#9a7a2e);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;transition:all 0.3s ease;"><i class="fas fa-save"></i> إضافة المنتج</button>
             </div>
             <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow);overflow-x:auto;">
                 <h2 style="color:var(--gold);margin-bottom:20px;"><i class="fas fa-list"></i> جميع المنتجات</h2>
