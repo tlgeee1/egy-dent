@@ -4,6 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Egy Dent - مستلزمات طب الأسنان</title>
+    <meta name="description" content="Egy Dent - جميع مستلزمات طب الأسنان في مصر بأفضل الأسعار. أدوات معملية، شمع، جبس، فرش، معجون، أدوات تقويم وأكثر. توصيل لجميع المحافظات." />
+    <meta property="og:title" content="Egy Dent - مستلزمات طب الأسنان" />
+    <meta property="og:description" content="جميع مستلزمات طب الأسنان في مصر بأفضل الأسعار مع توصيل سريع لجميع المحافظات." />
+    <meta property="og:image" content="images/logo.png" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" type="image/png" href="images/logo.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -358,32 +364,27 @@
         .search-box {
             display: flex;
             gap: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
+            background: #f0f0f0;
             border-radius: 50px;
             padding: 8px;
-            border: 2px solid rgba(255, 255, 255, 0.1);
+            border: 2px solid var(--gold);
             transition: var(--transition);
         }
         .search-box:focus-within {
-            border-color: var(--gold);
-            box-shadow: 0 0 30px rgba(201, 168, 76, 0.2);
+            box-shadow: 0 0 20px rgba(201, 168, 76, 0.2);
         }
         .search-box input {
             flex: 1;
             background: transparent;
             border: none;
             padding: 12px 20px;
-            color: var(--white);
             font-size: 1rem;
             font-family: 'Tajawal', sans-serif;
             outline: none;
+            color: #1a1a1a;
         }
         .search-box input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        .search-box input:focus {
-            outline: none;
+            color: #888;
         }
         .search-box button {
             background: linear-gradient(135deg, var(--gold), #9a7a2e);
@@ -395,6 +396,7 @@
             cursor: pointer;
             transition: var(--transition);
             font-family: 'Tajawal', sans-serif;
+            white-space: nowrap;
         }
         .search-box button:hover {
             transform: scale(1.02);
@@ -402,7 +404,7 @@
         }
         .search-results-count {
             text-align: center;
-            color: var(--silver);
+            color: #1a1a1a;
             font-size: 0.9rem;
             margin-top: 10px;
             display: none;
@@ -1097,8 +1099,9 @@
             .countdown-item { padding: 15px 20px; min-width: 60px; }
             .countdown-number { font-size: 1.8rem; }
             .offer-content h2 { font-size: 1.8rem; }
-            .search-box { flex-direction: column; border-radius: 20px; background: rgba(255,255,255,0.05); }
-            .search-box button { border-radius: 50px; }
+            .search-box { flex-wrap: wrap; border-radius: 20px; background: #f0f0f0; }
+            .search-box button { width: 100%; justify-content: center; }
+            .search-box input { width: 100%; }
         }
         @media (max-width: 480px) {
             .hero { padding: 120px 0 40px; }
@@ -1147,6 +1150,7 @@
         </div>
     </nav>
 
+    <!-- ===== HOME ===== -->
     <div class="page active" id="page-home">
         <section class="hero">
             <div class="hero-content">
@@ -1184,11 +1188,16 @@
                         <input type="text" id="searchInput" placeholder="🔍 ابحث عن منتج..." onkeyup="searchProducts()" />
                         <button onclick="searchProducts()"><i class="fas fa-search"></i> بحث</button>
                     </div>
-                    <div class="search-results-count" id="searchResultsCount">تم العثور على <span id="searchCount">0</span> منتج</div>
+                    <div class="search-results-count" id="searchResultsCount">
+                        تم العثور على <span id="searchCount">0</span> منتج
+                    </div>
                 </div>
 
                 <div class="products-grid" id="featuredProducts">
-                    <div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i><p>جاري التحميل...</p></div>
+                    <div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;">
+                        <i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i>
+                        <p>جاري التحميل...</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1261,32 +1270,38 @@
         </section>
     </div>
 
+    <!-- ===== PRODUCTS ===== -->
     <div class="page" id="page-products">
         <section style="padding:120px 20px 60px;max-width:1200px;margin:0 auto;">
             <div class="page-header">
                 <h1 class="section-title page-title" style="margin-bottom:0;">📦 جميع <span class="highlight">المنتجات</span></h1>
                 <button class="btn-back" onclick="showPage('home')"><i class="fas fa-arrow-right"></i> رجوع</button>
             </div>
-            
+
             <!-- ===== SEARCH BAR ===== -->
             <div class="search-container" style="max-width:600px;margin:0 auto 30px;padding:0;">
-                <div class="search-box" style="background:rgba(0,0,0,0.05);border-color:#ddd;">
-                    <input type="text" id="searchInputProducts" placeholder="🔍 ابحث عن منتج..." style="color:var(--primary);" onkeyup="searchProductsPage()" />
+                <div class="search-box">
+                    <input type="text" id="searchInputProducts" placeholder="🔍 ابحث عن منتج..." onkeyup="searchProductsPage()" />
                     <button onclick="searchProductsPage()"><i class="fas fa-search"></i> بحث</button>
                 </div>
-                <div class="search-results-count" id="searchResultsCountProducts">تم العثور على <span id="searchCountProducts">0</span> منتج</div>
+                <div class="search-results-count" id="searchResultsCountProducts">
+                    تم العثور على <span id="searchCountProducts">0</span> منتج
+                </div>
             </div>
 
             <div style="margin-bottom:30px;display:flex;gap:10px;flex-wrap:wrap;" id="filterButtons">
                 <button class="btn-primary" onclick="filterProducts('all')" style="padding:8px 20px;font-size:0.9rem;">الكل</button>
             </div>
             <div class="products-grid" id="allProducts">
-                <div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;"><i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i><p>جاري التحميل...</p></div>
+                <div style="text-align:center;padding:40px;color:#999;grid-column:1/-1;">
+                    <i class="fas fa-spinner fa-spin" style="font-size:2rem;"></i>
+                    <p>جاري التحميل...</p>
+                </div>
             </div>
         </section>
     </div>
 
-    <!-- ===== باقي الصفحات (about, contact, shipping, cart, order, admin) ===== -->
+    <!-- ===== ABOUT ===== -->
     <div class="page" id="page-about">
         <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
             <div class="page-header">
@@ -1304,6 +1319,7 @@
         </section>
     </div>
 
+    <!-- ===== CONTACT ===== -->
     <div class="page" id="page-contact">
         <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
             <div class="page-header">
@@ -1321,6 +1337,7 @@
         </section>
     </div>
 
+    <!-- ===== SHIPPING ===== -->
     <div class="page" id="page-shipping">
         <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
             <div class="page-header">
@@ -1347,6 +1364,7 @@
         </section>
     </div>
 
+    <!-- ===== CART ===== -->
     <div class="page" id="page-cart">
         <section style="padding:120px 20px 60px;max-width:800px;margin:0 auto;">
             <div class="page-header">
@@ -1363,6 +1381,7 @@
         </section>
     </div>
 
+    <!-- ===== ORDER ===== -->
     <div class="page" id="page-order">
         <section style="padding:120px 20px 60px;max-width:650px;margin:0 auto;">
             <div class="page-header">
@@ -1412,6 +1431,7 @@
         </section>
     </div>
 
+    <!-- ===== ADMIN ===== -->
     <div class="page" id="page-admin">
         <div id="adminLoginBox" style="display:block;padding:140px 20px 60px;max-width:400px;margin:0 auto;">
             <div style="background:white;padding:35px 30px;border-radius:12px;box-shadow:var(--shadow);border-top:4px solid var(--gold);text-align:center;">
@@ -1432,7 +1452,7 @@
                 </div>
             </div>
 
-            <!-- ===== SEARCH IN ADMIN ===== -->
+            <!-- ===== ADMIN SEARCH ===== -->
             <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:30px;">
                 <h2 style="color:var(--gold);margin-bottom:15px;"><i class="fas fa-search"></i> بحث في المنتجات</h2>
                 <div style="display:flex;gap:10px;flex-wrap:wrap;">
@@ -1465,7 +1485,7 @@
 
             <div id="bulkImportBox" style="background:white;padding:30px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:30px;border-top:4px solid var(--gold);">
                 <h2 style="color:var(--gold);margin-bottom:10px;"><i class="fas fa-file-import"></i> استيراد أسماء بالجملة</h2>
-                <p style="color:#777;font-size:0.9rem;margin-bottom:15px;">الصق أسماء المنتجات هنا، اسم في كل سطر. هيتم إنشاء منتج لكل سطر بالاسم بس (السعر والصورة فاضيين وتقدر تظبطهم بعدين).</p>
+                <p style="color:#777;font-size:0.9rem;margin-bottom:15px;">الصق أسماء المنتجات هنا، اسم في كل سطر. هيتم إنشاء منتج لكل سطر بالاسم بس.</p>
                 <textarea id="bulkNamesInput" placeholder="مصري wax sheet&#10;spatula يد بلاستيك&#10;..." style="width:100%;padding:12px 15px;margin-bottom:15px;border:2px solid #eee;border-radius:8px;font-size:0.95rem;min-height:160px;resize:vertical;direction:rtl;"></textarea>
                 <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
                     <button class="btn-submit" onclick="bulkImportProducts()" style="background:linear-gradient(135deg,var(--gold),#9a7a2e);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;"><i class="fas fa-upload"></i> استيراد الأسماء</button>
@@ -1475,7 +1495,7 @@
 
             <div id="jsonToolsBox" style="background:white;padding:30px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:30px;border-top:4px solid var(--gold);">
                 <h2 style="color:var(--gold);margin-bottom:10px;"><i class="fas fa-file-code"></i> استيراد / تصدير JSON</h2>
-                <p style="color:#777;font-size:0.9rem;margin-bottom:15px;">استورد منتجات من ملف JSON أو صدر كل المنتجات الحالية كملف JSON للنسخ الاحتياطي.</p>
+                <p style="color:#777;font-size:0.9rem;margin-bottom:15px;">استورد منتجات من ملف JSON أو صدر كل المنتجات كملف JSON.</p>
                 <div style="display:flex;flex-wrap:wrap;gap:15px;align-items:center;">
                     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;flex:1;">
                         <label style="background:var(--gold);color:var(--primary);padding:10px 20px;border-radius:8px;cursor:pointer;font-weight:bold;transition:all 0.3s ease;">
@@ -1525,6 +1545,7 @@
         </div>
     </div>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
@@ -2052,6 +2073,7 @@
 
             if (query === '') {
                 countEl.classList.remove('active');
+                countEl.style.display = 'none';
             } else {
                 countEl.classList.add('active');
                 countNum.textContent = found;
@@ -2064,8 +2086,9 @@
             document.querySelectorAll('#productsList tbody tr').forEach(row => {
                 row.style.display = '';
             });
-            document.getElementById('adminSearchResults').classList.remove('active');
-            document.getElementById('adminSearchResults').style.display = 'none';
+            const countEl = document.getElementById('adminSearchResults');
+            countEl.classList.remove('active');
+            countEl.style.display = 'none';
         };
 
         window.showPage = function(page) {
@@ -2082,13 +2105,13 @@
             if (page === 'order') displayOrderSummary();
             if (page === 'cart') updateCartDisplay();
             // Reset search when changing pages
-            if (page === 'home' || page === 'products') {
-                const searchInput = document.getElementById('searchInput');
-                if (searchInput) searchInput.value = '';
-                const searchInputProducts = document.getElementById('searchInputProducts');
-                if (searchInputProducts) searchInputProducts.value = '';
-                document.getElementById('searchResultsCount')?.classList.remove('active');
-                document.getElementById('searchResultsCountProducts')?.classList.remove('active');
+            if (page === 'home') {
+                document.getElementById('searchInput').value = '';
+                document.getElementById('searchResultsCount').classList.remove('active');
+            }
+            if (page === 'products') {
+                document.getElementById('searchInputProducts').value = '';
+                document.getElementById('searchResultsCountProducts').classList.remove('active');
             }
         };
 
@@ -2097,7 +2120,6 @@
             if (!container) return;
             const filtered = category === 'all' ? allProducts : allProducts.filter(p => p.category === category);
             container.innerHTML = filtered.map(p => createProductCard(p)).join('');
-            // Clear search
             document.getElementById('searchInput').value = '';
             document.getElementById('searchResultsCount').classList.remove('active');
         };
@@ -2107,7 +2129,6 @@
             if (!container) return;
             const filtered = category === 'all' ? allProducts : allProducts.filter(p => p.category === category);
             container.innerHTML = filtered.map(p => createProductCard(p)).join('');
-            // Clear search
             document.getElementById('searchInputProducts').value = '';
             document.getElementById('searchResultsCountProducts').classList.remove('active');
         };
