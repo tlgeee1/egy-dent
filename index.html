@@ -1860,6 +1860,15 @@
                 <input type="file" id="imageUpload" accept="image/*" style="padding:10px;width:100%;margin-bottom:15px;" />
                 <button class="btn-submit" onclick="addProduct()" style="background:linear-gradient(135deg,var(--gold),#9a7a2e);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;transition:all 0.3s ease;"><i class="fas fa-save"></i> إضافة المنتج</button>
             </div>
+            <div id="bulkImportBox" style="background:white;padding:30px;border-radius:12px;box-shadow:var(--shadow);margin-bottom:30px;border-top:4px solid var(--gold);">
+                <h2 style="color:var(--gold);margin-bottom:10px;"><i class="fas fa-file-import"></i> استيراد أسماء بالجملة</h2>
+                <p style="color:#777;font-size:0.9rem;margin-bottom:15px;">الصق أسماء المنتجات هنا، اسم في كل سطر. هيتم إنشاء منتج لكل سطر بالاسم بس (السعر والصورة فاضيين وتقدر تظبطهم بعدين من جدول "جميع المنتجات" تحت).</p>
+                <textarea id="bulkNamesInput" placeholder="مصري wax sheet&#10;spatula يد بلاستيك&#10;..." style="width:100%;padding:12px 15px;margin-bottom:15px;border:2px solid #eee;border-radius:8px;font-size:0.95rem;min-height:160px;resize:vertical;direction:rtl;"></textarea>
+                <div style="display:flex;align-items:center;gap:15px;flex-wrap:wrap;">
+                    <button class="btn-submit" onclick="bulkImportProducts()" style="background:linear-gradient(135deg,var(--gold),#9a7a2e);color:var(--primary);padding:12px 30px;border:none;border-radius:8px;font-weight:bold;cursor:pointer;"><i class="fas fa-upload"></i> استيراد الأسماء</button>
+                    <span id="bulkImportStatus" style="color:#777;font-size:0.9rem;"></span>
+                </div>
+            </div>
             <div style="background:white;padding:20px;border-radius:12px;box-shadow:var(--shadow);overflow-x:auto;">
                 <h2 style="color:var(--gold);margin-bottom:20px;"><i class="fas fa-list"></i> جميع المنتجات</h2>
                 <div style="margin-bottom:20px;display:flex;gap:10px;flex-wrap:wrap;">
@@ -2406,6 +2415,27 @@
                 document.getElementById('productDescription').value = '';
                 document.getElementById('imageUpload').value = '';
             });
+        };
+ 
+        window.bulkImportProducts = async function() {
+            if (!isAdminLoggedIn) { alert('يجب تسجيل الدخول أولاً'); return; }
+            const raw = document.getElementById('bulkNamesInput').value;
+            const lines = raw.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+            if (lines.length === 0) { alert('الصق أسماء المنتجات الأول'); return; }
+            if (!confirm(`هيتم إنشاء ${lines.length} منتج جديد بالاسم بس. متأكد؟`)) return;
+            const statusEl = document.getElementById('bulkImportStatus');
+            let done = 0;
+            for (const name of lines) {
+                const productData = { name, category: 'أخرى', price: '', description: '', image: '',
+                    createdAt: new Date().toISOString(), views: 0 };
+                const newProductRef = push(ref(database, 'products'));
+                await set(newProductRef, productData);
+                done++;
+                statusEl.textContent = `تم استيراد ${done} من ${lines.length}...`;
+            }
+            statusEl.textContent = `✅ تم استيراد ${done} منتج بنجاح`;
+            showNotification(`✅ تم استيراد ${done} منتج`);
+            document.getElementById('bulkNamesInput').value = '';
         };
  
         window.deleteProduct = function(id) {
